@@ -1,19 +1,16 @@
-<img width="18" height="18" src="https://github.com/erica223020/HealthMonitoringSystem/assets/92545899/4ad1d640-9c35-42cb-8957-15e7b816afbb"/>
-<h1>HealthMonitoringSystem</h1>
-<p>健康監控系統</p>
+# <img align="bweeteen" alt="health" width="20px" src="https://github.com/erica223020/HealthMonitoringSystem/assets/92545899/4ad1d640-9c35-42cb-8957-15e7b816afbb" /> HealthMonitoringSystem
+健康監控系統
 
 Demo link: 
 
-<h2>UI功能簡介</h2>
-<h3>前台</h3>
-<ul>
-  <li>登入、註冊功能</li>
-</ul>
+## UI功能簡介
+### 前台
+> 前台功能
+-登入、註冊功能
 
-<h3>後台</h3>
+### 後台
 
-<h2>技術簡介</h2>
+## 技術簡介
+### 前端套件
 
-<h3>前端套件</h3>
-
-後端
+### 後端
