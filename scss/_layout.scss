@@ -2,9 +2,22 @@ $primary: #0074d9;
 $danger: #ff4136;
 
 body {
-    font-family: 'Klee One', sans-serif;
-  }
+  font-family: "Klee One", sans-serif;
+}
 
-p {
-    color:$danger;
+.bg-dark-2 {
+  background: #534a57;
+}
+.border-dark-1 {
+  border-color: rgb(52, 55, 59);
+}
+
+.search-inner {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(45, 48, 53, 0.95);
+  z-index: 9;
 }

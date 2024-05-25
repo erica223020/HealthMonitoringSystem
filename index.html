@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/choices.css" />
 
     <!-- demo http://demo.mobanwang.com/mb/lo202401/202401009/html/index.html-->
-        <!-- Google fonts - Muli-->
+    <!-- Google fonts - Muli-->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Muli:300,400,700"
@@ -31,7 +31,8 @@
   <body>
     <header class="header">
       <nav
-        class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10">
+        class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10"
+      >
         <div class="search-panel">
           <div
             class="search-inner d-flex align-items-center justify-content-center"
@@ -1754,30 +1755,7 @@
     <script src="home-premium.js"></script>
     <!-- Main File-->
     <script src="front.js"></script>
-    <script>
-      // ------------------------------------------------------- //
-      //   Inject SVG Sprite -
-      //   see more here
-      //   https://css-tricks.com/ajaxing-svg-sprite/
-      // ------------------------------------------------------ //
-      function injectSvgSprite(path) {
-        var ajax = new XMLHttpRequest();
-        ajax.open("GET", path, true);
-        ajax.send();
-        ajax.onload = function (e) {
-          var div = document.createElement("div");
-          div.className = "d-none";
-          div.innerHTML = ajax.responseText;
-          document.body.insertBefore(div, document.body.childNodes[0]);
-        };
-      }
-      // this is set to BootstrapTemple website as you cannot
-      // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
-      // while using file:// protocol
-      // pls don't forget to change to your domain :)
-      injectSvgSprite("icons/orion-svg-sprite.svg");
-    </script>
-    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
