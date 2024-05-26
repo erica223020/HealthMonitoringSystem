@@ -28,6 +28,93 @@
   </head>
 
   <body>
+    <header class="header">
+      <nav
+        class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10"
+      >
+        <div
+          class="container-fluid d-flex align-items-center justify-content-between py-1"
+        >
+          <div class="navbar-header d-flex align-items-center">
+            <a class="navbar-brand text-uppercase text-reset" href="index.html">
+              <div class="brand-text brand-big">
+                <strong class="text-primary">Dark</strong><strong>Admin</strong>
+              </div>
+              <div class="brand-text brand-sm">
+                <strong class="text-primary">D</strong><strong>A</strong>
+              </div>
+            </a>
+            <button class="sidebar-toggle">
+              <svg class="svg-icon svg-icon-sm svg-icon-heavy transform-none">
+                <use xlink:href="#arrow-left-1"></use>
+              </svg>
+            </button>
+          </div>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <a class="search-open nav-link px-0" href="#">
+                <svg class="svg-icon svg-icon-xs svg-icon-heavy text-gray-700">
+                  <use xlink:href="#find-1"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="list-inline-item dropdown px-lg-2">
+              <a
+                class="nav-link text-reset px-1 px-lg-0"
+                href="#"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                  <use xlink:href="#envelope-1"></use>
+                </svg>
+                <span class="badge bg-dash-color-1">5</span>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end dropdown-menu-dark"
+                aria-labelledby="navbarDropdownMenuLink1"
+              >
+                <li>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="position-relative">
+                      <img
+                        class="avatar avatar-md"
+                        src="img/avatar-3.jpg"
+                        alt="Nadia Halsey"
+                      />
+                      <div class="availability-status bg-success"></div>
+                    </div>
+                    <div class="ms-3">
+                      <strong class="d-block">Nadia Halsey</strong>
+                      <span class="d-block text-xs"
+                        >lorem ipsum dolor sit amit</span
+                      >
+                      <small class="d-block">9:30am</small>
+                    </div>
+                  </a>
+                </li>
+                <!-- Other message items -->
+              </ul>
+            </li>
+            <!-- Other dropdowns -->
+            <li class="list-inline-item logout px-lg-2">
+              <a
+                class="nav-link text-sm text-reset px-1 px-lg-0"
+                id="logout"
+                href="login.html"
+              >
+                <span class="d-none d-sm-inline-block">Logout </span>
+                <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                  <use xlink:href="#disable-1"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <!-- Bootstrap JavaScript -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
