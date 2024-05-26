@@ -1,7 +1,51 @@
-body {
-  font-family: "Klee One", sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-p {
-  color: #ff4136;
+body {
+  font-family: "Klee One", sans-serif;
+  background-color: #f2eeee;
+}
+body .header {
+  border-bottom: 1px solid #34495e;
+  z-index: 10;
+}
+body .header .navbar.navbar-expand-lg {
+  padding: 10px 0;
+}
+body .header .navbar.navbar-expand-lg .container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand {
+  text-transform: uppercase;
+  color: #fff;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text {
+  font-weight: bold;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text.brand-big .text-primary {
+  color: #3498db;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text.brand-sm .text-primary {
+  color: #3498db;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .list-inline {
+  margin-bottom: 0;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a {
+  color: #fff;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a svg {
+  fill: #fff;
+}
+body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a .badge {
+  background-color: #e74c3c;
+}
+
+.navbar .navbar-brand {
+  font-family: "Klee One", sans-serif;
 }/*# sourceMappingURL=all.css.map */
