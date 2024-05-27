@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>弹出窗口登录和注册示例</title>
+    <title>健康登入</title>
+
     <style>
-      /* 全局样式 */
+      /* 全局樣式 */
+      .logo a {
+        display: block;
+        width: 150px; /* 設置寬度 */
+        height: 150px; /* 設置高度 */
+        text-indent: 101%; /*首行縮排*/
+        overflow: hidden; /*自動隱藏超出的文字或圖片*/
+        white-space: nowrap; /*希望元素在第一排上面，沒有斷行*/
+        background: url("images/logo.svg") no-repeat center center;
+        background-size: contain; /* 調整圖片大小以適應容器 */
+      }
       body {
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
@@ -26,9 +37,9 @@
         margin-bottom: 20px;
       }
 
-      /* 弹出窗口样式 */
+      /* 彈出窗口樣式 */
       .modal {
-        display: none; /* 默认隐藏 */
+        display: none; /* 預設隱藏 */
         position: fixed;
         z-index: 1;
         left: 0;
@@ -61,7 +72,7 @@
         color: #333;
       }
 
-      /* 表单样式 */
+      /* 表單樣式 */
       form {
         margin-top: 20px;
       }
@@ -95,45 +106,48 @@
       }
 
       #registerFormContainer {
-        display: none; /* 默认隐藏注册表单 */
+        display: none; /* 預設隱藏註冊表單 */
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>欢迎来到健康监控系统</h1>
-      <button id="loginBtn">登录</button>
+      <h1 class="logo">
+        <a href="#">logo</a>
+      </h1>
+      <h2>歡迎來到健康監控系統</h2>
+      <button id="loginBtn">登入</button>
 
-      <!-- 弹出窗口 -->
+      <!-- 彈出窗口 -->
       <div id="loginModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
-          <h2>登录或注册</h2>
+          <h2 id="modalTitle">登入</h2>
           <div id="loginFormContainer">
             <form id="loginForm">
-              <label for="username">用户名：</label>
+              <label for="username">用戶名：</label>
               <input type="text" id="username" name="username" required />
-              <label for="password">密码：</label>
+              <label for="password">密碼：</label>
               <input type="password" id="password" name="password" required />
-              <button type="submit">登录</button>
+              <button type="submit">登入</button>
             </form>
           </div>
           <div id="registerFormContainer">
             <form id="registerForm">
-              <label for="newUsername">用户名：</label>
+              <label for="newUsername">用戶名：</label>
               <input type="text" id="newUsername" name="newUsername" required />
-              <label for="newPassword">密码：</label>
+              <label for="newPassword">密碼：</label>
               <input
                 type="password"
                 id="newPassword"
                 name="newPassword"
                 required
               />
-              <button type="submit">注册</button>
+              <button type="submit">註冊</button>
             </form>
           </div>
           <p id="switchFormText">
-            还没有账号？<a href="#" id="switchToRegister">注册新账号</a>
+            還沒有帳號？<a href="#" id="switchToRegister">註冊新帳號</a>
           </p>
         </div>
       </div>
@@ -148,6 +162,7 @@
       var registerFormContainer = document.getElementById(
         "registerFormContainer"
       );
+      var modalTitle = document.getElementById("modalTitle");
 
       loginBtn.addEventListener("click", function () {
         modal.style.display = "block";
@@ -157,15 +172,17 @@
       function switchToLogin() {
         loginFormContainer.style.display = "block";
         registerFormContainer.style.display = "none";
-        switchToRegisterLink.textContent = "注册新账号";
+        switchToRegisterLink.textContent = "註冊新帳號";
         switchToRegisterLink.onclick = switchToRegister;
+        modalTitle.textContent = "登入";
       }
 
       function switchToRegister() {
         registerFormContainer.style.display = "block";
         loginFormContainer.style.display = "none";
-        switchToRegisterLink.textContent = "已有账号？返回登录";
+        switchToRegisterLink.textContent = "已有帳號？返回登入";
         switchToRegisterLink.onclick = switchToLogin;
+        modalTitle.textContent = "註冊";
       }
 
       closeBtn.onclick = function () {
@@ -183,7 +200,7 @@
         event.preventDefault();
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        alert("用户名：" + username + "\n密码：" + password);
+        alert("用戶名：" + username + "\n密碼：" + password);
         modal.style.display = "none";
       };
 
@@ -192,7 +209,7 @@
         event.preventDefault();
         var newUsername = document.getElementById("newUsername").value;
         var newPassword = document.getElementById("newPassword").value;
-        alert("注册成功！\n用户名：" + newUsername + "\n密码：" + newPassword);
+        alert("註冊成功！\n用戶名：" + newUsername + "\n密碼：" + newPassword);
         switchToLogin();
       };
     </script>
