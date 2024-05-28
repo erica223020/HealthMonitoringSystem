@@ -93,3 +93,11 @@ href="login.html"：指向登入頁面的超連結。
 
 自定義的類名和SVG圖標，用於顯示登出文本和圖示。
 這些類名和屬性的組合通常用於Bootstrap和自定義CSS之間，以實現具有特定設計風格和功能的用戶界面元素。
+
+Bootstrap: 用於快速設計和佈局的前端框架。
+jQuery: 用於簡化 JavaScript 操作和 DOM 管理的函式庫。
+Chart.js: 用於創建各種圖表和數據可視化的 JavaScript 库。
+ApexCharts: 用於交互式圖表和圖形的 JavaScript 圖表庫。
+Dropzone: 用於實現拖放上傳文件的 JavaScript 库。
+Select2: 用於改進和美化表單下拉框的 JavaScript 库。
+Moment.js: 用於解析、顯示和操作日期時間的 JavaScript 库。
