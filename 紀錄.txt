@@ -38,6 +38,7 @@ py-3：Bootstrap的類名，意思是在垂直方向（y軸）增加內邊距（
 bg-dash-dark-2：自定義的背景顏色類名。
 border-bottom border-dash-dark-1：自定義的底部邊框樣式，包括顏色和樣式。
 z-index-10：自定義的z軸堆疊順序，用於CSS定位。
+
 <div class="container-fluid d-flex align-items-center justify-content-between py-1">：
 
 container-fluid：Bootstrap提供的全寬容器，填充整個視窗寬度。

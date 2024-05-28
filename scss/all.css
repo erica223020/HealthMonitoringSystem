@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -8,42 +9,15 @@ body {
   font-family: "Klee One", sans-serif;
   background-color: #f2eeee;
 }
-body .header {
-  border-bottom: 1px solid #34495e;
-  z-index: 10;
-}
-body .header .navbar.navbar-expand-lg {
-  padding: 10px 0;
-}
-body .header .navbar.navbar-expand-lg .container-fluid {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand {
-  text-transform: uppercase;
-  color: #fff;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text {
-  font-weight: bold;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text.brand-big .text-primary {
-  color: #3498db;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .navbar-brand .brand-text.brand-sm .text-primary {
-  color: #3498db;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .list-inline {
-  margin-bottom: 0;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a {
-  color: #fff;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a svg {
-  fill: #fff;
-}
-body .header .navbar.navbar-expand-lg .container-fluid .list-inline .list-inline-item a .badge {
-  background-color: #e74c3c;
+body .logo a {
+  display: block;
+  width: 150px; /* 設置寬度 */
+  height: 150px; /* 設置高度 */
+  text-indent: 101%; /*首行縮排*/
+  overflow: hidden; /*自動隱藏超出的文字或圖片*/
+  white-space: nowrap; /*希望元素在第一排上面，沒有斷行*/
+  background: url("../images/logo.svg") no-repeat center center;
+  background-size: contain; /* 調整圖片大小以適應容器 */
 }
 
 .navbar .navbar-brand {

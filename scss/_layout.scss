@@ -1,7 +1,9 @@
 $primary: #0074d9;
 $danger: #ff4136;
-$color-bg: #f2eeee;
+$bg-light-color: #f8f8f8;
+$bg-dark-color: #f2eeee;
 $font-primary: "Klee One", sans-serif;
+$border-dark: #c7b7b7;
 
 *,
 *::before,
@@ -12,60 +14,16 @@ $font-primary: "Klee One", sans-serif;
 
 body {
   font-family: $font-primary;
-  background-color: $color-bg; // 背景顏色  //改到這
-  .header {
-    border-bottom: 1px solid #34495e; // 底部邊框
-    z-index: 10; // z-index 屬性
-
-    .navbar {
-      &.navbar-expand-lg {
-        padding: 10px 0; // 上下 padding
-
-        .container-fluid {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          .navbar-brand {
-            text-transform: uppercase;
-            color: #fff; // 品牌文字顏色
-
-            .brand-text {
-              font-weight: bold;
-
-              &.brand-big {
-                .text-primary {
-                  color: #3498db; // 大文字部分的主要顏色
-                }
-              }
-
-              &.brand-sm {
-                .text-primary {
-                  color: #3498db; // 小文字部分的主要顏色
-                }
-              }
-            }
-          }
-
-          .list-inline {
-            margin-bottom: 0;
-
-            .list-inline-item {
-              a {
-                color: #fff; // 文字顏色
-
-                svg {
-                  fill: #fff; // SVG 圖示填充色
-                }
-
-                .badge {
-                  background-color: #e74c3c; // 徽章背景顏色
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+  background-color: $bg-dark-color; // 背景顏色 
+  
+  .logo a {
+    display: block;
+    width: 150px; /* 設置寬度 */
+    height: 150px; /* 設置高度 */
+    text-indent: 101%; /*首行縮排*/
+    overflow: hidden; /*自動隱藏超出的文字或圖片*/
+    white-space: nowrap; /*希望元素在第一排上面，沒有斷行*/
+    background: url("../images/logo.svg") no-repeat center center;
+    background-size: contain; /* 調整圖片大小以適應容器 */
   }
 }
