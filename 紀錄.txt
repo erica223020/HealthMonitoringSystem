@@ -1,103 +1,23 @@
-在你的健康監控系統網站中，可能會用到以下這些 JavaScript 檔案：
+這些是網頁中引用的外部資源文件，主要包括樣式表（CSS）和腳本文件（JavaScript）。讓我來解釋一下每個連結的作用：
 
-just-validate.min.js: 用於表單驗證，確保使用者輸入的數據符合格式和要求。
+https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback: 這是用於加載Google Fonts 中的Source Sans Pro 字體的鏈接，提供了多種字重（300、400、400斜體、700）以及顯示回退（fallback）選項。
 
-chart.min.js: 提供生成各種圖表（如折線圖、柱狀圖等）的功能，用於展示健康數據的趨勢和變化。
+plugins/fontawesome-free/css/all.min.css: 這是Font Awesome 圖示庫的樣式表，用於載入Font Awesome 圖示。
 
-choices.min.js: 用於自定義下拉菜單，可能用於選擇特定的健康指標或選項。
+https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css: 這是Ionic Icons 圖示庫的樣式表，用於載入Ionic 圖示。
 
-js-cookie.js: 提供方便的操作瀏覽器 cookie 的方法，用於記錄和管理用戶的偏好設置或登錄狀態。
+plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css: 這是Tempus Dominus Bootstrap 4 日期時間選擇器外掛程式的樣式表，用於美化日期時間選擇器的外觀。
 
-demo.js: 可能是示範用的 JavaScript 文件，展示如何使用其他庫或功能。
+plugins/icheck-bootstrap/icheck-bootstrap.min.css: 這是iCheck Bootstrap 外掛程式的樣式表，用於美化複選框和單選框的外觀。
 
-charts.home.js 和 home-premium.js: 可能是針對首頁特定功能或效果而定製的 JavaScript 文件。
+plugins/jqvmap/jqvmap.min.css: 這是jQuery Vector Map（jqvmap）外掛程式的樣式表，用來載入地圖外掛的樣式。
 
-front.js: 可能是用於前端網頁的一般性 JavaScript 功能，包括一些動態效果或事件處理。
+dist/css/adminlte.min.css?v=3.2.0: 這是AdminLTE 管理面板模板的樣式表，用於載入整個模板的樣式。
 
-對於健康監控系統，具體使用哪些 JavaScript 取決於你的需求和功能設計：
+plugins/overlayScrollbars/css/OverlayScrollbars.min.css: 這是OverlayScrollbars 外掛程式的樣式表，用於建立自訂捲軸。
 
-必須使用的：通常需要使用表單驗證、生成圖表和處理用戶設置或狀態的功能。
+plugins/daterangepicker/daterangepicker.css: 這是DateRangePicker 外掛程式的樣式表，用於建立日期範圍選擇器。
 
-可能用到的：根據你的具體需求，選擇是否需要自定義下拉菜單或特定的首頁效果。
+plugins/summernote/summernote-bs4.min.css: 這是Summernote 富文本編輯器的樣式表，用於建立富文本編輯器。
 
-可以不用的：如果某些功能和效果對於你的系統不是必須的，可以不使用相應的 JavaScript 文件，以減少頁面加載時間和資源消耗。
-
-根據你的實際情況，可以審視每個 JavaScript 文件的功能，然後根據需要選擇保留或刪除。
-
-
-
-
-===
-<header class="header">：這是一個HTML5標準的頁首元素，使用了自定義的類名 "header"。
-
-<nav class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10">：
-
-navbar：Bootstrap提供的用於導航的樣式類名。
-navbar-expand-lg：當螢幕大於或等於大型（lg）尺寸時，導航列會自動擴展的類名。
-py-3：Bootstrap的類名，意思是在垂直方向（y軸）增加內邊距（padding），數字3表示大小。
-bg-dash-dark-2：自定義的背景顏色類名。
-border-bottom border-dash-dark-1：自定義的底部邊框樣式，包括顏色和樣式。
-z-index-10：自定義的z軸堆疊順序，用於CSS定位。
-
-<div class="container-fluid d-flex align-items-center justify-content-between py-1">：
-
-container-fluid：Bootstrap提供的全寬容器，填充整個視窗寬度。
-d-flex align-items-center justify-content-between：Flexbox佈局的類名，用於將子元素水平排列，並將它們置於容器的兩端。
-py-1：Bootstrap的類名，指定在垂直方向上的內邊距（padding），數字1表示大小。
-<div class="navbar-header d-flex align-items-center">：
-
-自定義的類名，用於導航欄的標頭部分，包含了品牌標誌和側邊欄切換按鈕。
-<a class="navbar-brand text-uppercase text-reset" href="index.html">：
-
-navbar-brand：Bootstrap提供的類名，用於標識品牌。
-text-uppercase 和 text-reset：Bootstrap提供的類名，用於轉換文本為大寫和重置文本的顏色。
-href="index.html"：指向首頁的超連結。
-<div class="brand-text brand-big"> 和 <div class="brand-text brand-sm">：
-
-自定義的類名，用於定義大尺寸和小尺寸的品牌文本樣式。
-<button class="sidebar-toggle">：
-
-自定義的類名，用於側邊欄切換按鈕。
-<ul class="list-inline mb-0">：
-
-list-inline：Bootstrap提供的類名，用於將列表項內容水平排列。
-mb-0：Bootstrap的類名，指定列表底部的外邊距（margin-bottom），數字0表示沒有外邊距。
-<li class="list-inline-item">：
-
-list-inline-item：Bootstrap提供的類名，用於列表內的每個項目，使其水平排列。
-<a class="search-open nav-link px-0" href="#">：
-
-自定義的類名，用於打開搜索的按鈕。
-<li class="list-inline-item dropdown px-lg-2">：
-
-dropdown 和 px-lg-2：Bootstrap提供的類名，用於下拉菜單項目和在大型（lg）尺寸時的內邊距。
-<a class="nav-link text-reset px-1 px-lg-0" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">：
-
-nav-link 和 text-reset：Bootstrap提供的類名，用於導航列的超連結和重置文本顏色。
-data-bs-toggle="dropdown"：Bootstrap提供的屬性，用於啟用下拉菜單。
-aria-haspopup="true" 和 aria-expanded="false"：用於無障礙訪問，指示下拉菜單的狀態。
-<ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink1">：
-
-dropdown-menu 和 dropdown-menu-end：Bootstrap提供的類名，用於下拉菜單的樣式和位置。
-dropdown-menu-dark：自定義的類名，指定暗色背景的下拉菜單。
-aria-labelledby="navbarDropdownMenuLink1"：用於無障礙訪問，關聯下拉菜單的標識符。
-<li class="list-inline-item logout px-lg-2">：
-
-自定義的類名，用於登出項目。
-<a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="login.html">：
-
-text-sm：自定義的類名，用於小型文本。
-id="logout"：設置元素的唯一識別符。
-href="login.html"：指向登入頁面的超連結。
-<span class="d-none d-sm-inline-block">Logout </span> 和 <svg class="svg-icon svg-icon-xs svg-icon-heavy">：
-
-自定義的類名和SVG圖標，用於顯示登出文本和圖示。
-這些類名和屬性的組合通常用於Bootstrap和自定義CSS之間，以實現具有特定設計風格和功能的用戶界面元素。
-
-Bootstrap: 用於快速設計和佈局的前端框架。
-jQuery: 用於簡化 JavaScript 操作和 DOM 管理的函式庫。
-Chart.js: 用於創建各種圖表和數據可視化的 JavaScript 库。
-ApexCharts: 用於交互式圖表和圖形的 JavaScript 圖表庫。
-Dropzone: 用於實現拖放上傳文件的 JavaScript 库。
-Select2: 用於改進和美化表單下拉框的 JavaScript 库。
-Moment.js: 用於解析、顯示和操作日期時間的 JavaScript 库。
+老師說CSR SSR可以都做
