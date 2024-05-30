@@ -1,4 +1,3 @@
-@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -6,49 +5,10 @@
 }
 
 body {
-  font-family: "Klee One", sans-serif;
   background-color: #f2eeee;
-}
-body .bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-@media (max-width: 767px) {
-  body .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-  body .logo .logo-l {
-    display: block;
-    width: 80px; /* 设置小屏幕下的宽度 */
-    height: 30px; /* 设置小屏幕下的高度 */
-    margin-top: 5px; /* 小屏幕下的顶部边距 */
-  }
-}
-body .logo .logo-l {
-  display: block;
-  width: 120px; /* 設置寬度 */
-  height: 50px; /* 設置高度 */
-  text-indent: 150%; /*首行縮排*/
-  margin-top: 10px;
-  overflow: hidden; /*自動隱藏超出的文字或圖片*/
-  white-space: nowrap; /*希望元素在第一排上面，沒有斷行*/
-  background: url("../images/logo-large.svg") no-repeat center center;
-  background-size: cover; /* 調整圖片大小以適應容器 */
-}
-@media (max-width: 767px) {
-  body .logo .logo-l {
-    background: url("../images/logo-small.svg") no-repeat center center;
-  }
 }
 body #myDatepicker {
   width: 220px;
   height: 30px;
   text-align: center;
-}
-
-.navbar .navbar-brand {
-  font-family: "Klee One", sans-serif;
 }/*# sourceMappingURL=all.css.map */
