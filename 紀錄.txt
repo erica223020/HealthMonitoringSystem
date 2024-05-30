@@ -20,4 +20,15 @@ plugins/daterangepicker/daterangepicker.css: 這是DateRangePicker 外掛程式�
 
 plugins/summernote/summernote-bs4.min.css: 這是Summernote 富文本編輯器的樣式表，用於建立富文本編輯器。
 
+
+当您使用 Bootstrap 的类或者手动设置 Flexbox CSS 来调整导航栏中的项目位置时，有几个关键点需要理解：
+
+w-100 类： 这是 Bootstrap 的类之一，用于将元素的宽度设置为 100%。在这里，我们将 ul 元素的宽度设置为 100%，以确保它占据整个导航栏的宽度。
+
+justify-content-end 类： 这是 Bootstrap 提供的一个 Flexbox 类，用于在 Flex 容器中将项目推到末尾（即右侧）。Flexbox 是一种布局模型，允许您在容器中灵活排列项目，通过 justify-content-end 类，我们确保所有项目在 ul 元素中都被推到了右侧。
+
+ml-auto 类在 li 元素中的应用： 在 Bootstrap 中，ml-auto 类用于将元素的左边距设为自动，这意味着它会把自身推到其它项目的右侧。在这里，如果您在 li 元素上应用了 ml-auto 类，它会使这个 li 元素（包含 "Log in" 链接）靠右对齐，而其他的 li 元素则保持在左侧。
+
+综上所述，w-100 justify-content-end 用于确保整个导航栏的宽度占满并将项目推到右侧，而 ml-auto 则用于在项目级别上控制单独项目的右侧对齐。这种结合使用 Flexbox 和 Bootstrap 类的方式，能够有效地实现项目在导航栏中的灵活布局和对齐。
+
 老師說CSR SSR可以都做
