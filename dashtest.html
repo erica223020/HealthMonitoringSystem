@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2e3b4e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 80px;
+            background-color: #364152;
+            position: fixed;
+            height: 100vh;
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #fff;
+            margin: 20px 0;
+            font-size: 24px;
+        }
+        .main-content {
+            margin-left: 80px;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .header div {
+            display: flex;
+            align-items: center;
+        }
+        .header h1 {
+            margin-left: 10px;
+            font-size: 24px;
+        }
+        .period {
+            background-color: #3e4a61;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .period input {
+            background-color: #3e4a61;
+            border: none;
+            color: #fff;
+            padding: 5px;
+            margin: 0 10px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .buttons button {
+            background-color: #4a5a76;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #3e4a61;
+            padding: 20px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="#">🏠</a>
+        <a href="#">📧</a>
+        <a href="#">🔔</a>
+        <a href="#">⚙️</a>
+        <a href="#">📅</a>
+        <a href="#">🏆</a>
+        <a href="#">🛠</a>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <img src="https://via.placeholder.com/50" alt="User">
+                <h1>Hello Jennifer</h1>
+            </div>
+            <div class="period">
+                <span>Select period:</span>
+                <input type="date" value="2022-01-01">
+                <span>to</span>
+                <input type="date" value="2022-12-31">
+            </div>
+            <div class="buttons">
+                <button>New Automation</button>
+                <button>New Template</button>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Income</h3>
+                <h2>$250,000.00</h2>
+            </div>
+            <div class="card">
+                <h3>Inquiry Success Rate</h3>
+                <h2>36.2%</h2>
+            </div>
+            <div class="card">
+                <h3>Number of New Clients</h3>
+                <h2>36</h2>
+            </div>
+            <div class="card">
+                <h3>Number of Completed Projects</h3>
+                <h2>29</h2>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Inquiry Breakdown</h3>
+                <div class="chart-container">
+                    <canvas id="inquiryBreakdown"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Inquiries per Month</h3>
+                <div class="chart-container">
+                    <canvas id="inquiriesPerMonth"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Inquiry Source Breakdown</h3>
+                <div class="chart-container">
+                    <canvas id="inquirySourceBreakdown"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Income per Quarter</h3>
+                <div class="chart-container">
+                    <canvas id="incomePerQuarter"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <h3>Income per Month</h3>
+                <div class="chart-container">
+                    <canvas id="incomePerMonth"></canvas>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Income Source per Month</h3>
+                <div class="chart-container">
+                    <canvas id="incomeSourcePerMonth"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const inquiryBreakdownCtx = document.getElementById('inquiryBreakdown').getContext('2d');
+        const inquiriesPerMonthCtx = document.getElementById('inquiriesPerMonth').getContext('2d');
+        const inquirySourceBreakdownCtx = document.getElementById('inquirySourceBreakdown').getContext('2d');
+        const incomePerQuarterCtx = document.getElementById('incomePerQuarter').getContext('2d');
+        const incomePerMonthCtx = document.getElementById('incomePerMonth').getContext('2d');
+        const incomeSourcePerMonthCtx = document.getElementById('incomeSourcePerMonth').getContext('2d');
+
+        new Chart(inquiryBreakdownCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Booked', 'Flopped'],
+                datasets: [{
+                    data: [36.2, 63.8],
+                    backgroundColor: ['#4CAF50', '#F44336']
+                }]
+            }
+        });
+
+        new Chart(inquiriesPerMonthCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Inquiries',
+                    data: [5, 10, 15, 7, 20, 25, 18, 22, 30, 35, 40, 50],
+                    backgroundColor: '#E91E63'
+                }]
+            }
+        });
+
+        new Chart(inquirySourceBreakdownCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Web', 'Email', 'Instagram', 'TikTok', 'Pinterest'],
+                datasets: [{
+                    label: 'Source',
+                    data: [70, 30, 15, 10, 5],
+                    backgroundColor: ['#2196F3', '#FFC107', '#673AB7', '#009688', '#795548']
+                }]
+            }
+        });
+
+        new Chart(incomePerQuarterCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [{
+                    data: [13.1, 28.6, 28, 30.3],
+                    backgroundColor: ['#FF5722', '#607D8B', '#8BC34A', '#FF9800']
+                }]
+            }
+        });
+
+        new Chart(incomePerMonthCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Income',
+                    data: [1500, 3000, 4500, 2100, 6000, 7500, 5400, 6600, 9000, 10500, 12000, 15000],
+                    backgroundColor: '#4CAF50'
+                }]
+            }
+        });
+
+        new Chart(incomeSourcePerMonthCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Web', 'Email', 'Instagram', 'TikTok', 'Pinterest'],
+                datasets: [{
+                    label: 'Source',
+                    data: [10000, 5000, 2500, 1500, 1000],
+                    backgroundColor: ['#2196F3', '#FFC107', '#673AB7', '#009688', '#795548']
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
