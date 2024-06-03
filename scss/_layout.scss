@@ -3,6 +3,8 @@ $danger: #ff4136;
 $bg-light-color: #f8f8f8;
 $bg-dark-color: #f2eeee;
 $border-dark: #c7b7b7;
+$btn-dark: #343a40;
+$btn-light: #4d5358;
 
 *,
 *::before,
@@ -12,12 +14,36 @@ $border-dark: #c7b7b7;
 }
 
 body {
-  background-color: $bg-dark-color; // 背景顏
+  background-color: $bg-dark-color; // 背景色
   #myDatepicker {
     width: 220px; 
     height: 30px;
-    text-align: center;
+    text-align: center;  
 }
+.btn-link {
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.underline-from-left {
+  position: absolute;
+  bottom: 5px;
+  left: 5%;
+  width: 0;
+  height: 2px;
+  background-color: #256ebd; /* 底線顏色 */
+  transition: width 0.3s ease; /* 底線出現的過渡效果 */
+}
+
+.btn-link:hover .underline-from-left {
+  width: 90%; /* 底線從左到右展開 */
+}
+
+#refreshCaptcha:hover {
+  color: $btn-dark; /* 深黑色 */
+}
+
 }
 
 

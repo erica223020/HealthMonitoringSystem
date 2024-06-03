@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -11,6 +12,26 @@ body #myDatepicker {
   width: 220px;
   height: 30px;
   text-align: center;
+}
+body .btn-link {
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+body .underline-from-left {
+  position: absolute;
+  bottom: 5px;
+  left: 5%;
+  width: 0;
+  height: 2px;
+  background-color: #256ebd; /* 底線顏色 */
+  transition: width 0.3s ease; /* 底線出現的過渡效果 */
+}
+body .btn-link:hover .underline-from-left {
+  width: 90%; /* 底線從左到右展開 */
+}
+body #refreshCaptcha:hover {
+  color: #343a40; /* 深黑色 */
 }
 
 .modal-content {
@@ -36,8 +57,8 @@ body #myDatepicker {
 }
 
 .btn-primary {
-  background-color: #343a40;
-  border: #343a40;
+  background-color: #4d5358;
+  border: #4d5358;
 }
 
 .btn-primary:hover {
@@ -47,13 +68,13 @@ body #myDatepicker {
 
 .btn-primary.focus, .btn-primary:focus {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #4d5358;
+  border-color: #4d5358;
   box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #4d5358;
+  border-color: #4d5358;
 }/*# sourceMappingURL=all.css.map */
