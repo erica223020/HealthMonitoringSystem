@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未登入介面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #007bff;
+            color: white;
+            height: 100vh;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .topbar {
+            background-color: #0056b3;
+            padding: 10px;
+            color: white;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>健康監控系統</h2>
+        <a href="home.html">首頁</a>
+        <a href="about.html">關於我們</a>
+        <a href="services.html">服務</a>
+        <a href="contact.html">聯繫我們</a>
+        <a href="faq.html">常見問題</a>
+        <a href="login.html">登入</a>
+        <a href="register.html">註冊</a>
+    </div>
+    <div class="content">
+        <div class="topbar">
+            <a href="login.html" style="color: white;">登入</a> | 
+            <a href="register.html" style="color: white;">註冊</a>
+        </div>
+        <h1>歡迎來到健康監控系統</h1>
+        <p>這裡可以提供健康數據的監控和分析服務。</p>
+    </div>
+</body>
+</html>
