@@ -1,56 +1,21 @@
-<!-- 登入彈跳視窗 -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">登入</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- 登入表單 -->
-                <form>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">使用者信箱</label>
-                        <input type="text" class="form-control" id="username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">密碼</label>
-                        <input type="password" class="form-control" id="password" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="captchaInput" class="form-label">驗證碼</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="captchaInput" required>
-                            <img src="/api/captcha" id="captchaImage" class="ms-2" alt="Captcha">
-                            <button type="button" class="btn btn-outline-secondary" id="refreshCaptcha">刷新</button>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">登入</button>
-                    <a href="#" class="btn btn-link position-absolute bottom-0 end-0 mb-3 me-3" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" style="position: relative; overflow: hidden;">還沒有帳號嗎?<br>馬上註冊<span class="underline-from-left"></span></a>
-                </form>
-                
-            </div>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Health Monitoring System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-bell"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
+                    <i class="fas fa-user"></i> 登入
+                </a>
+            </li>
+        </ul>
     </div>
-</div>
-<style>.btn-link {
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-}
-
-.underline-from-left {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #000; /* 底線顏色 */
-    transition: width 0.3s ease; /* 底線出現的過渡效果 */
-}
-
-.btn-link:hover .underline-from-left {
-    width: 100%; /* 底線從左到右展開 */
-}</style>
-
+</nav>
 

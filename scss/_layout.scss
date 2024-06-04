@@ -43,7 +43,16 @@ body {
 #refreshCaptcha:hover {
   color: $btn-dark; /* 深黑色 */
 }
-
+.navbar-badge {
+  position: absolute;
+  top: 5px ;
+  right: 5px ;
+  display: inline-block ;
+  width: 10px ;
+  height: 10px ;
+  border-radius: 50% ;
+  background-color: red ;
+}
 }
 
 
