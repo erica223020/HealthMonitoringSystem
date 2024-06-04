@@ -1,4 +1,8 @@
-@use 'layout' as *; //導入全部的變數
+$bg-light-color: #f8f8f8;
+$bg-dark-color: #f2eeee;
+$border-dark: #c7b7b7;
+$btn-dark: #343a40;
+$btn-light: #4d5358;
 
 // 覆寫 Bootstrap Modal 的背景和邊框
 .modal-content {

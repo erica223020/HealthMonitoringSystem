@@ -1,10 +1,9 @@
-$primary: #0074d9;
-$danger: #ff4136;
 $bg-light-color: #f8f8f8;
 $bg-dark-color: #f2eeee;
 $border-dark: #c7b7b7;
 $btn-dark: #343a40;
 $btn-light: #4d5358;
+$btn-red: #EB4E54;
 
 *,
 *::before,
@@ -24,6 +23,7 @@ body {
   position: relative;
   overflow: hidden;
   text-decoration: none;
+  color:#3c8be0;
 }
 
 .underline-from-left {
@@ -43,15 +43,21 @@ body {
 #refreshCaptcha:hover {
   color: $btn-dark; /* 深黑色 */
 }
-.navbar-badge {
+.red-point {
+  position: relative;
+  padding-right: 10px; /* 增加右侧填充以容纳红点 */
+  cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
+}
+
+.red-point::after {
+  content: '';
   position: absolute;
-  top: 5px ;
-  right: 5px ;
-  display: inline-block ;
-  width: 10px ;
-  height: 10px ;
-  border-radius: 50% ;
-  background-color: red ;
+  top: 0;
+  right: 2px;;
+  width: 7px;
+  height: 7px;
+  background-color: $btn-red;
+  border-radius: 50%;
 }
 }
 

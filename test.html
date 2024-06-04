@@ -1,21 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Health Monitoring System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-bell"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">
-                    <i class="fas fa-user"></i> 登入
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification Example</title>
+<style>
+    .notification-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; /* 將子元素靠右對齊 */
+    }
+    .notification-icon-container {
+        position: relative;
+        margin-left: 10px; /* 調整間距 */
+    }
+    .notification-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .notification-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    .notification-popup {
+        position: absolute;
+        top: 30px;
+        right: 0; /* 調整至右側 */
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: none;
+    }
+</style>
+</head>
+<body>
 
+<div class="notification-container">
+    <div class="notification-icon-container">
+        <img src="notification-icon.png" alt="Notification Icon" class="notification-icon" id="notification-icon">
+        <div class="notification-badge"></div>
+    </div>
+    <div class="notification-popup" id="notification-popup">
+        <p>This is a notification message.</p>
+    </div>
+</div>
+
+<script>
+    const notificationIcon = document.getElementById('notification-icon');
+    const notificationPopup = document.getElementById('notification-popup');
+
+    notificationIcon.addEventListener('click', () => {
+        if (notificationPopup.style.display === 'block') {
+            notificationPopup.style.display = 'none';
+        } else {
+            notificationPopup.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>

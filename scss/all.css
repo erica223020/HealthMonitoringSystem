@@ -17,6 +17,7 @@ body .btn-link {
   position: relative;
   overflow: hidden;
   text-decoration: none;
+  color: #3c8be0;
 }
 body .underline-from-left {
   position: absolute;
@@ -32,6 +33,21 @@ body .btn-link:hover .underline-from-left {
 }
 body #refreshCaptcha:hover {
   color: #343a40; /* 深黑色 */
+}
+body .red-point {
+  position: relative;
+  padding-right: 10px; /* 增加右侧填充以容纳红点 */
+  cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
+}
+body .red-point::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 2px;
+  width: 7px;
+  height: 7px;
+  background-color: #EB4E54;
+  border-radius: 50%;
 }
 
 .modal-content {
@@ -77,4 +93,8 @@ body #refreshCaptcha:hover {
   color: #fff;
   background-color: #4d5358;
   border-color: #4d5358;
+}
+
+.modal-dialog-custom {
+  max-width: 180%; /* 你可以調整這個值來改變模態框的寬度 */
 }/*# sourceMappingURL=all.css.map */
