@@ -8,17 +8,18 @@ $btn-red: #eb4e54;
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 body {
   background-color: $bg-dark-color; // 背景色
+
   #myDatepicker {
     width: 220px;
     height: 30px;
     text-align: center;
   }
+
   .btn-link {
     position: relative;
     overflow: hidden;
@@ -32,21 +33,21 @@ body {
     left: 5%;
     width: 0;
     height: 2px;
-    background-color: #256ebd; /* 底線顏色 */
-    transition: width 0.3s ease; /* 底線出現的過渡效果 */
+    background-color: #256ebd; // 底線顏色
+    transition: width 0.3s ease; // 底線出現的過渡效果
   }
 
   .btn-link:hover .underline-from-left {
-    width: 90%; /* 底線從左到右展開 */
+    width: 90%; // 底線從左到右展開
+  }
+  #refreshCaptcha:hover {
+    color: $btn-dark; // 深黑色
   }
 
-  #refreshCaptcha:hover {
-    color: $btn-dark; /* 深黑色 */
-  }
   .red-point {
     position: relative;
-    padding-right: 10px; /* 增加右侧填充以容纳红点 */
-    cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
+    padding-right: 10px; // 增加右側填充以容納紅點
+    cursor: pointer; // 可選，使鼠標指針在懸停時變為手指
   }
 
   .red-point::after {
@@ -58,13 +59,6 @@ body {
     height: 7px;
     background-color: $btn-red;
     border-radius: 50%;
-  }
-  .main-sidebar {
-    transition: width 0.3s ease;
-  }
-
-  .sidebar-collapse .main-sidebar {
-    width: 80px;
   }
 
   .sidebar-collapse .brand-link .brand-text {
@@ -84,27 +78,23 @@ body {
     transition: margin-left 0.3s ease !important;
   }
 
-  .main-sidebar {
-    transition: width 0.3s ease !important; // 調整過渡時間和速度曲線
-  }
-
   .sidebar-collapse .main-sidebar {
     width: 80px !important; // 收合後的寬度
   }
 
   .sidebar-collapse .content-wrapper {
     margin-left: 80px !important;
-    transition: margin-left 0.3s ease !important; /* 同步過渡效果 */
+    transition: margin-left 0.3s ease !important; // 同步過渡效果
   }
-  /* 過渡效果的CSS */
+
+  // 過渡效果的CSS
   .modal.fade .modal-dialog {
     transform: translateY(-100%);
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
-
-  .modal.fade.show .modal-dialog {
-    transform: translateY(0);
-    opacity: 1;
-  }
+}
+.modal.fade.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
 }

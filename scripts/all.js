@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   sidebarToggle.addEventListener("click", function (e) {
     e.preventDefault();
-    sidebar.classList.toggle("collapsed");
-    wrapper.classList.toggle("collapsed");
+    sidebar.classList.toggle("sidebar-collapse");
+    wrapper.classList.toggle("sidebar-collapse");
   });
 });
 document.addEventListener("DOMContentLoaded", function () {
@@ -106,4 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     loginButton.classList.add("show");
   }, 500); // 延遲500毫秒後顯示按鈕
+});
+
+$(document).ready(function () {
+  $('[data-widget="pushmenu"]').PushMenu();
 });

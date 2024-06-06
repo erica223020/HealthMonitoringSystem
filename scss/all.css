@@ -7,7 +7,6 @@
 
 body {
   background-color: #f2eeee;
-  /* 過渡效果的CSS */
 }
 body #myDatepicker {
   width: 220px;
@@ -26,19 +25,19 @@ body .underline-from-left {
   left: 5%;
   width: 0;
   height: 2px;
-  background-color: #256ebd; /* 底線顏色 */
-  transition: width 0.3s ease; /* 底線出現的過渡效果 */
+  background-color: #256ebd;
+  transition: width 0.3s ease;
 }
 body .btn-link:hover .underline-from-left {
-  width: 90%; /* 底線從左到右展開 */
+  width: 90%;
 }
 body #refreshCaptcha:hover {
-  color: #343a40; /* 深黑色 */
+  color: #343a40;
 }
 body .red-point {
   position: relative;
-  padding-right: 10px; /* 增加右侧填充以容纳红点 */
-  cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
+  padding-right: 10px;
+  cursor: pointer;
 }
 body .red-point::after {
   content: "";
@@ -49,12 +48,6 @@ body .red-point::after {
   height: 7px;
   background-color: #eb4e54;
   border-radius: 50%;
-}
-body .main-sidebar {
-  transition: width 0.3s ease;
-}
-body .sidebar-collapse .main-sidebar {
-  width: 80px;
 }
 body .sidebar-collapse .brand-link .brand-text {
   display: none;
@@ -69,22 +62,20 @@ body .sidebar-collapse .nav-item i {
 body .sidebar-mini .wrapper {
   transition: margin-left 0.3s ease !important;
 }
-body .main-sidebar {
-  transition: width 0.3s ease !important;
-}
 body .sidebar-collapse .main-sidebar {
   width: 80px !important;
 }
 body .sidebar-collapse .content-wrapper {
   margin-left: 80px !important;
-  transition: margin-left 0.3s ease !important; /* 同步過渡效果 */
+  transition: margin-left 0.3s ease !important;
 }
 body .modal.fade .modal-dialog {
   transform: translateY(-100%);
   opacity: 0;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
-body .modal.fade.show .modal-dialog {
+
+.modal.fade.show .modal-dialog {
   transform: translateY(0);
   opacity: 1;
 }
