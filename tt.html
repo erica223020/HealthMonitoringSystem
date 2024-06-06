@@ -1,308 +1,303 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="健康監控系統 - 提供健康數據監控和個人健康報告，幫助用戶掌控健康狀況。" />
     <title>HealthMonitoringSystem | 健康監控系統</title>
     <link rel="icon" href="icons/LifeGuard.png" type="image/png" />
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
     <!-- AdminLTE CSS -->
-    <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+    />
     <!-- 日期選擇器 Air datepicker Css -->
-    <link href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="scss/all.css" />
-</head>
-
-<body class="hold-transition sidebar-mini">
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/d6b833583a.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button"
+              ><i class="fas fa-search"></i
+            ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button"
+              ><i class="fas fa-bell"></i><span class="red-point"></span
+            ></a>
+          </li>
+          <li class="nav-item d-sm-inline-block">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+            >
+              登入
+            </button>
+          </li>
+        </ul>
+      </nav>
+              <!-- 登入彈跳視窗 -->
+              <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">登入</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 登入表單 -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">使用者信箱</label>
+                                    <input type="text" class="form-control" id="username" placeholder="請輸入信箱" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">密碼</label>
+                                    <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" placeholder="請輸入英數混合的六個字元"required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="captchaInput" class="form-label">驗證碼</label>
+                                    <div class="input-group ">
+                                        <div>
+                                        <input type="text" class="form-control" id="captchaInput" required>
+                                    </div>
+                                        <img src="/api/captcha" id="captchaImage" class="ms-4" alt="Captcha">
+                                        <button type="button" id="refreshCaptcha" class="btn btn-outline-secondary m-2" style="border: none; background: none;">
+                                            <i class="fas fa-sync-alt"></i> <!-- 使用 Font Awesome 的刷新符號 -->
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">登入</button>
+                                <a href="#" class="btn btn-link position-absolute bottom-0 end-0 mb-3 me-3" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" style="position: relative; overflow: hidden;">還沒有帳號嗎?馬上註冊<span class="underline-from-left"></span></a>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 註冊彈跳視窗 -->
+            <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-custom">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModalLabel">註冊</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 註冊表單 -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerUsername" class="form-label">使用者信箱</label>
+                                    <input type="email" class="form-control" placeholder="請輸入要註冊的信箱" required="required" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">密碼</label>
+                                    <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$"placeholder="請輸入英數混合的六個字元" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">再次確認密碼</label>
+                                    <input id="ConfirmPassword" class="form-control" type="password" placeholder="請再次輸入密碼" required="required" oninput="setCustomValidity('');" onchange="if(document.getElementById('inputPassword').value != document.getElementById('ConfirmPassword').value){setCustomValidity('密碼與確認密碼不相同');}"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">註冊</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <!-- Sidebar -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="#" class="brand-link d-flex align-items-center">
+          <img
+            src="images/LifeGuard.svg"
+            alt="Logo"
+            class="brand-image img-circle elevation-3 mt-1 mb-1"
+          />
+          <span class="brand-text font-weight-light ms-2">Life Guard</span>
+        </a>
+        <div class="sidebar">
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img
+                src="images/sticker.jpg"
+                class="img-circle elevation-2"
+                alt="User Image"
+              />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">Rich Ting</a>
+            </div>
+          </div>
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+            >
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p>首頁</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="weight.html" class="nav-link">
+                  <i class="nav-icon fas fa-weight"></i>
+                  <p>體重</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="bloodsugar.html" class="nav-link">
+                  <i class="nav-icon fas fa-tint"></i>
+                  <p>血糖</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="bloodpressure.html" class="nav-link">
+                  <i class="nav-icon fas fa-heartbeat"></i>
+                  <p>血壓</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="heartrate.html" class="nav-link">
+                  <i class="nav-icon fas fa-heart"></i>
+                  <p>心率</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="steps.html" class="nav-link">
+                  <i class="nav-icon fas fa-shoe-prints"></i>
+                  <p>步數</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="exercise.html" class="nav-link">
+                  <i class="nav-icon fas fa-dumbbell"></i>
+                  <p>運動</p>
+                </a>
+              </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button"><i class="fas fa-search"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">
-                        <i class="fas fa-bell"></i>
-                        <span class="red-point"> </span>
-                    </a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">登入</button>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- 登入彈跳視窗 -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="loginModalLabel">登入</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 登入表單 -->
-                        <form>
-                            <div class="mb-3">
-                                <label for="username" class="form-label">使用者信箱</label>
-                                <input type="text" class="form-control" id="username" placeholder="請輸入信箱" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerPassword" class="form-label">密碼</label>
-                                <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" placeholder="請輸入英數混合的六個字元"required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="captchaInput" class="form-label">驗證碼</label>
-                                <div class="input-group ">
-                                    <div>
-                                    <input type="text" class="form-control" id="captchaInput" required>
-                                </div>
-                                    <img src="/api/captcha" id="captchaImage" class="ms-4" alt="Captcha">
-                                    <button type="button" id="refreshCaptcha" class="btn btn-outline-secondary m-2" style="border: none; background: none;">
-                                        <i class="fas fa-sync-alt"></i> <!-- 使用 Font Awesome 的刷新符號 -->
-                                    </button>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">登入</button>
-                            <a href="#" class="btn btn-link position-absolute bottom-0 end-0 mb-3 me-3" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" style="position: relative; overflow: hidden;">還沒有帳號嗎?馬上註冊<span class="underline-from-left"></span></a>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
+          </nav>
         </div>
+      </aside>
 
-        <!-- 註冊彈跳視窗 -->
-        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-custom">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registerModalLabel">註冊</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 註冊表單 -->
-                        <form>
-                            <div class="mb-3">
-                                <label for="registerUsername" class="form-label">使用者信箱</label>
-                                <input type="email" class="form-control" placeholder="請輸入要註冊的信箱" required="required" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerPassword" class="form-label">密碼</label>
-                                <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$"placeholder="請輸入英數混合的六個字元" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="registerEmail" class="form-label">再次確認密碼</label>
-                                <input id="ConfirmPassword" class="form-control" type="password" required="required" oninput="setCustomValidity('');" onchange="if(document.getElementById('inputPassword').value != document.getElementById('ConfirmPassword').value){setCustomValidity('密碼與確認密碼不相同');}"/>
-                            </div>
-                            <button type="submit" class="btn btn-primary">註冊</button>
-                        </form>
-                    </div>
-                </div>
+      <!-- Content Wrapper -->
+      <div class="content-wrapper">
+        <!-- Content Header -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>首頁</h1>
+              </div>
             </div>
-        </div>
+          </div>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <!-- Info boxes -->
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <span class="info-box-icon bg-info elevation-1"
+                    ><i class="fas fa-weight"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">體重</span>
+                    <span class="info-box-number">65 kg</span>
+                  </div>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-danger elevation-1"
+                    ><i class="fas fa-tint"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">血糖</span>
+                    <span class="info-box-number">110 mg/dL</span>
+                  </div>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-success elevation-1"
+                    ><i class="fas fa-heartbeat"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">血壓</span>
+                    <span class="info-box-number">120/80 mmHg</span>
+                  </div>
+                </div>
+              </div>
+              <!-- ./col -->
+              <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                  <span class="info-box-icon bg-warning elevation-1"
+                    ><i class="fas fa-heart"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">心率</span>
+                    <span class="info-box-number">75 bpm</span>
+                  </div>
+                </div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
     </div>
-
-        <!-- Sidebar -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link d-flex align-items-center ">
-                <img src="images/LifeGuard.svg" alt="Logo" class="brand-image img-circle elevation-3 mt-1 mb-1">
-                <span class="brand-text font-weight-light ms-2">Life Guard</span>
-            </a>
-            <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="images/sticker.jpg"
-                            class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Rich Ting</a>
-                    </div>
-                </div>
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>體重</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>體溫</p>
-                            </a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>血糖</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>每日步數</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>運動量</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-
-        <!-- Content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="input-group mb-3">
-                        <input id="myDatepicker" data-language='zh' class="form-control">
-                        <button class="btn btn-outline-secondary" type="button" onclick="showDatepicker()"><i
-                                class="fas fa-calendar-alt"></i></button>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">今日步數</h3>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">您今天已經走了 5000 步。</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">健康建議</h3>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">保持每天至少 30 分鐘的運動，有助於健康。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-3">
-                        <div class="card-header">
-                            <h3 class="card-title">示例圖表</h3>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="exampleChart"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
+    <!-- ./wrapper -->
 
     <!-- 日期選擇器 Air datepicker JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
-        crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AdminLTE JavaScript -->
-    <script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js"></script>
-
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d6b833583a.js" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        $(function () {
-            var ctx = document.getElementById('exampleChart').getContext('2d');
-            var chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['一月', '二月', '三月', '四月', '五月', '六月', '七月'],
-                    datasets: [{
-                        label: '步數',
-                        backgroundColor: 'rgba(60,141,188,0.9)',
-                        borderColor: 'rgba(60,141,188,0.8)',
-                        data: [5000, 6000, 5500, 7000, 6500, 7200, 6800]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    datasetFill: false
-                }
-            });
-
-            const zh = {
-                days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-                daysShort: ['日', '一', '二', '三', '四', '五', '六'],
-                daysMin: ['日', '一', '二', '三', '四', '五', '六'],
-                months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                monthsShort: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-                today: '今天',
-                clear: '清除',
-                dateFormat: 'yyyy/MM/dd',
-                firstday: 0
-            };
-
-            const datepicker = new AirDatepicker('#myDatepicker', {
-                locale: zh,
-                range: true,
-                buttons: ['today', 'clear'],
-                multipleDatesSeparator: ' - '
-            });
-            // 函數：點擊日期選擇器 ICON 顯示日期選擇器
-            window.showDatepicker = () => {
-                datepicker.show();
-            };
-            //如果不是點擊日期選擇器或ICON則隱藏日期選擇器
-            $(document).on('mousedown', function (e) {
-                //當用戶點擊頁面上的任意地方時，檢查點擊位置是否在日期選擇器或日期選擇器圖標內，是就不執行任何操作
-                if ($(e.target).closest('.air-datepicker').length || $(e.target).closest('.datepicker-icon').length) {
-                    return;
-                }
-                // 否則隱藏
-                datepicker.hide();
-            });
-        });
-    </script>
-</body>
-
+    <script src="scripts/all.js"></script>
+  </body>
 </html>

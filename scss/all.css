@@ -7,6 +7,7 @@
 
 body {
   background-color: #f2eeee;
+  /* 過渡效果的CSS */
 }
 body #myDatepicker {
   width: 220px;
@@ -46,8 +47,46 @@ body .red-point::after {
   right: 2px;
   width: 7px;
   height: 7px;
-  background-color: #EB4E54;
+  background-color: #eb4e54;
   border-radius: 50%;
+}
+body .main-sidebar {
+  transition: width 0.3s ease;
+}
+body .sidebar-collapse .main-sidebar {
+  width: 80px;
+}
+body .sidebar-collapse .brand-link .brand-text {
+  display: none;
+}
+body .sidebar-collapse .nav-item p {
+  display: none;
+}
+body .sidebar-collapse .nav-item i {
+  margin-right: 0;
+  font-size: 1.5em;
+}
+body .sidebar-mini .wrapper {
+  transition: margin-left 0.3s ease !important;
+}
+body .main-sidebar {
+  transition: width 0.3s ease !important;
+}
+body .sidebar-collapse .main-sidebar {
+  width: 80px !important;
+}
+body .sidebar-collapse .content-wrapper {
+  margin-left: 80px !important;
+  transition: margin-left 0.3s ease !important; /* 同步過渡效果 */
+}
+body .modal.fade .modal-dialog {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+body .modal.fade.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .modal-content {

@@ -3,7 +3,7 @@ $bg-dark-color: #f2eeee;
 $border-dark: #c7b7b7;
 $btn-dark: #343a40;
 $btn-light: #4d5358;
-$btn-red: #EB4E54;
+$btn-red: #eb4e54;
 
 *,
 *::before,
@@ -15,51 +15,96 @@ $btn-red: #EB4E54;
 body {
   background-color: $bg-dark-color; // 背景色
   #myDatepicker {
-    width: 220px; 
+    width: 220px;
     height: 30px;
-    text-align: center;  
-}
-.btn-link {
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color:#3c8be0;
-}
+    text-align: center;
+  }
+  .btn-link {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: #3c8be0;
+  }
 
-.underline-from-left {
-  position: absolute;
-  bottom: 5px;
-  left: 5%;
-  width: 0;
-  height: 2px;
-  background-color: #256ebd; /* 底線顏色 */
-  transition: width 0.3s ease; /* 底線出現的過渡效果 */
-}
+  .underline-from-left {
+    position: absolute;
+    bottom: 5px;
+    left: 5%;
+    width: 0;
+    height: 2px;
+    background-color: #256ebd; /* 底線顏色 */
+    transition: width 0.3s ease; /* 底線出現的過渡效果 */
+  }
 
-.btn-link:hover .underline-from-left {
-  width: 90%; /* 底線從左到右展開 */
-}
+  .btn-link:hover .underline-from-left {
+    width: 90%; /* 底線從左到右展開 */
+  }
 
-#refreshCaptcha:hover {
-  color: $btn-dark; /* 深黑色 */
-}
-.red-point {
-  position: relative;
-  padding-right: 10px; /* 增加右侧填充以容纳红点 */
-  cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
-}
+  #refreshCaptcha:hover {
+    color: $btn-dark; /* 深黑色 */
+  }
+  .red-point {
+    position: relative;
+    padding-right: 10px; /* 增加右侧填充以容纳红点 */
+    cursor: pointer; /* 可选，使鼠标指针在悬停时变为手指 */
+  }
 
-.red-point::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 2px;;
-  width: 7px;
-  height: 7px;
-  background-color: $btn-red;
-  border-radius: 50%;
+  .red-point::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 7px;
+    height: 7px;
+    background-color: $btn-red;
+    border-radius: 50%;
+  }
+  .main-sidebar {
+    transition: width 0.3s ease;
+  }
+
+  .sidebar-collapse .main-sidebar {
+    width: 80px;
+  }
+
+  .sidebar-collapse .brand-link .brand-text {
+    display: none;
+  }
+
+  .sidebar-collapse .nav-item p {
+    display: none;
+  }
+
+  .sidebar-collapse .nav-item i {
+    margin-right: 0;
+    font-size: 1.5em;
+  }
+
+  .sidebar-mini .wrapper {
+    transition: margin-left 0.3s ease !important;
+  }
+
+  .main-sidebar {
+    transition: width 0.3s ease !important; // 調整過渡時間和速度曲線
+  }
+
+  .sidebar-collapse .main-sidebar {
+    width: 80px !important; // 收合後的寬度
+  }
+
+  .sidebar-collapse .content-wrapper {
+    margin-left: 80px !important;
+    transition: margin-left 0.3s ease !important; /* 同步過渡效果 */
+  }
+  /* 過渡效果的CSS */
+  .modal.fade .modal-dialog {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .modal.fade.show .modal-dialog {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-}
-
-
-
