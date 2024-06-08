@@ -9,6 +9,7 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
       crossorigin="anonymous"
     />
     <!-- AdminLTE CSS -->
@@ -21,7 +22,7 @@
       href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="all.css" />
+    <link rel="stylesheet" href="scss/all.css" />
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/d6b833583a.js"
@@ -34,21 +35,21 @@
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-              <i class="fas fa-bars"></i>
-            </a>
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">
-              <i class="fas fa-search"></i>
-            </a>
+            <a class="nav-link" href="#" role="button"
+              ><i class="fas fa-search"></i
+            ></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" role="button">
-              <i class="fas fa-bell"></i><span class="red-point"></span>
-            </a>
+            <a class="nav-link" href="#" role="button"
+              ><i class="fas fa-bell"></i><span class="red-point"></span
+            ></a>
           </li>
           <li class="nav-item d-sm-inline-block">
             <button
@@ -62,6 +63,76 @@
           </li>
         </ul>
       </nav>
+              <!-- 登入彈跳視窗 -->
+              <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="loginModalLabel">登入</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 登入表單 -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">使用者信箱</label>
+                                    <input type="text" class="form-control" id="username" placeholder="請輸入信箱" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">密碼</label>
+                                    <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$" placeholder="請輸入英數混合的六個字元"required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="captchaInput" class="form-label">驗證碼</label>
+                                    <div class="input-group ">
+                                        <div>
+                                        <input type="text" class="form-control" id="captchaInput" required>
+                                    </div>
+                                        <img src="/api/captcha" id="captchaImage" class="ms-4" alt="Captcha">
+                                        <button type="button" id="refreshCaptcha" class="btn btn-outline-secondary m-2" style="border: none; background: none;">
+                                            <i class="fas fa-sync-alt"></i> <!-- 使用 Font Awesome 的刷新符號 -->
+                                        </button>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">登入</button>
+                                <a href="#" class="btn btn-link position-absolute bottom-0 end-0 mb-3 me-3" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" style="position: relative; overflow: hidden;">還沒有帳號嗎?馬上註冊<span class="underline-from-left"></span></a>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 註冊彈跳視窗 -->
+            <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-custom">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerModalLabel">註冊</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 註冊表單 -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerUsername" class="form-label">使用者信箱</label>
+                                    <input type="email" class="form-control" placeholder="請輸入要註冊的信箱" required="required" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">密碼</label>
+                                    <input id="inputPassword" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$"placeholder="請輸入英數混合的六個字元" required="required" oninput="setCustomValidity('');" oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">再次確認密碼</label>
+                                    <input id="ConfirmPassword" class="form-control" type="password" placeholder="請再次輸入密碼" required="required" oninput="setCustomValidity('');" onchange="if(document.getElementById('inputPassword').value != document.getElementById('ConfirmPassword').value){setCustomValidity('密碼與確認密碼不相同');}"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">註冊</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
       <!-- Sidebar -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -218,11 +289,15 @@
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-    <!-- Custom JS -->
-    <script src="all.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/all.js"></script>
   </body>
 </html>
