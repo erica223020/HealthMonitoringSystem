@@ -98,3 +98,10 @@ body {
   transform: translateY(0);
   opacity: 1;
 }
+@media (max-width: 768px) {
+  /* 確保側邊欄和內容區域不會導致滾動條出現 */
+  html,
+  body {
+    overflow: hidden; /* 隱藏整個頁面的滾動條 */
+  }
+}
