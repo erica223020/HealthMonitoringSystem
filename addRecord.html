@@ -212,6 +212,26 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <!-- 新增數據表單 -->
+                    <h2>新增健康數據</h2>
+                    <form method="post" action="/addHealthData">
+                        <div class="mb-3">
+                            <label for="dataType" class="form-label">數據類型</label>
+                            <select class="form-select" id="dataType" name="dataType" required>
+                                <option value="體重">體重</option>
+                                <option value="血糖">血糖</option>
+                                <option value="血壓">血壓</option>
+                                <option value="心率">心率</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="value" class="form-label">數值</label>
+                            <input type="text" class="form-control" id="value" name="value" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </form>
+                    <!-- 數據列表 -->
+                    <h2 class="mt-5">健康數據列表</h2>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -241,24 +261,6 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <!-- 新增數據表單 -->
-                    <h2>新增健康數據</h2>
-                    <form method="post" action="/addHealthData">
-                        <div class="mb-3">
-                            <label for="dataType" class="form-label">數據類型</label>
-                            <select class="form-select" id="dataType" name="dataType" required>
-                                <option value="體重">體重</option>
-                                <option value="血糖">血糖</option>
-                                <option value="血壓">血壓</option>
-                                <option value="心率">心率</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="value" class="form-label">數值</label>
-                            <input type="text" class="form-control" id="value" name="value" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </form>
                 </div>
             </section>
         </div>
