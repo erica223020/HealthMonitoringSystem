@@ -3,37 +3,44 @@ package com.HealthMonitoring.System.controller;
 import com.HealthMonitoring.System.model.po.HealthData;
 import com.HealthMonitoring.System.service.HealthDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/health-data")
 public class HealthDataController {
 
     @Autowired
     private HealthDataService healthDataService;
 
-    // 處理新增健康數據的請求
+    // 保存健康數據的控制器方法
     @PostMapping("/add")
-    public String handleAddHealthData(@ModelAttribute HealthData healthData, Model model) {
+    public void saveHealthData(@RequestBody HealthData healthData) {
         healthDataService.saveHealthData(healthData);
-        return "redirect:/"; // 新增成功後跳轉到主頁
     }
 
-    // 處理更新健康數據的請求
+    // 更新健康數據的控制器方法
     @PostMapping("/update")
-    public String handleUpdateHealthData(@ModelAttribute HealthData healthData, Model model) {
+    public void updateHealthData(@RequestBody HealthData healthData) {
         healthDataService.updateHealthData(healthData);
-        return "redirect:/"; // 更新成功後跳轉到主頁
     }
 
-    // 處理刪除健康數據的請求
-    @PostMapping("/delete")
-    public String handleDeleteHealthData(@RequestParam("id") int id, Model model) {
+    // 查找健康數據的方法
+    @GetMapping("/{id}")
+    public HealthData getHealthDataById(@PathVariable int id) {
+        return healthDataService.findHealthDataById(id);
+    }
+
+    // 查找某用戶的所有健康數據的方法
+    @GetMapping("/user/{userId}")
+    public List<HealthData> getAllHealthDataByUserId(@PathVariable int userId) {
+        return healthDataService.findAllByUserId(userId);
+    }
+
+    // 刪除健康數據的方法
+    @DeleteMapping("/delete/{id}")
+    public void deleteHealthData(@PathVariable int id) {
         healthDataService.deleteHealthDataById(id);
-        return "redirect:/"; // 刪除成功後跳轉到主頁
     }
 }

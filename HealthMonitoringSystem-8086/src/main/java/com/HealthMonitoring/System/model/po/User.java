@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,4 +15,6 @@ public class User {
     private String password;    // 用戶的密碼
     private String username;    // 用戶名
     private String status;      // 用戶帳戶的狀態 ('pending', 'active', 'inactive')
+    private String gender;
+    private Timestamp createdAt;
 }

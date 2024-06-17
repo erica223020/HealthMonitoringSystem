@@ -1,15 +1,12 @@
 package com.HealthMonitoring.System.dao;
 
 import com.HealthMonitoring.System.model.po.HealthData;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-public interface HealthDataDao {
-    // 查找特定用戶的所有健康數據
-    List<HealthData> findAllByUserId(int userId);
-
-    // 其他方法
-    HealthData findById(int id);
-    void save(HealthData healthData);
-    void update(HealthData healthData);
-    void deleteById(int id);
+@Repository
+public interface HealthDataDao extends CrudRepository<HealthData, Integer> {
+    List<HealthData> findAllByUserId(int userId); // 查找某用戶所有的健康數據
 }

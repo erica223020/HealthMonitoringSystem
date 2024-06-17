@@ -1,29 +1,31 @@
 package com.HealthMonitoring.System.service;
 
 import com.HealthMonitoring.System.dao.UserDao;
-import com.HealthMonitoring.System.dao.HealthDataDao;
-import com.HealthMonitoring.System.model.dto.UserHealthDataDto;
-import com.HealthMonitoring.System.model.po.HealthData;
 import com.HealthMonitoring.System.model.po.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class UserService {
 
-    private final UserDao userDao;
-    private final HealthDataDao healthDataDao;
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
-    public UserService(UserDao userDao, HealthDataDao healthDataDao) {
-        this.userDao = userDao;
-        this.healthDataDao = healthDataDao;
+    private PasswordEncoder passwordEncoder;
+
+    public boolean login(String email, String password) {
+        User user = userDao.findByEmail(email);
+        return user != null && passwordEncoder.matches(password, user.getPassword());
     }
 
-    public UserHealthDataDto getUserWithHealthData(int userId) {
-        User user = userDao.findById(userId);
-        List<HealthData> healthDataList = healthDataDao.findAllByUserId(userId);
-        return new UserHealthDataDto(user, healthDataList);  // 使用 UserHealthDataDto 的構造函數
+    public boolean register(String email, String username, String password, String gender) {
+        if (userDao.findByEmail(email) != null) {
+            return false; // Email 已經被註冊
+        }
+        String encodedPassword = passwordEncoder.encode(password);
+        User newUser = new User(null, email, username, encodedPassword, gender, "active", null);
+        return userDao.save(newUser) > 0;
     }
 }
