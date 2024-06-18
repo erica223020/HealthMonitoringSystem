@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
   $('[data-widget="pushmenu"]').PushMenu();
 });
-
 // $(function () {
 //   var ctx = document.getElementById("exampleChart").getContext("2d");
 //   var chart = new Chart(ctx, {
