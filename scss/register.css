@@ -29,14 +29,6 @@ body {
   padding: 40px;
 }
 
-.register-card {
-  width: 100%;
-  max-width: 450px;
-  background: #333;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
 .register-card .form-label {
   color: #ccc;
@@ -64,7 +56,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("images/20231130122939339895227.jpg") no-repeat center center;
+  background: url("/images/background.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
 }
