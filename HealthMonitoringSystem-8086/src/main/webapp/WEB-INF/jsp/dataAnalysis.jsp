@@ -1,14 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthMonitoringSystem | 健康監控系統</title>
-    <meta
-      name="description"
-      content="HealthMonitoringSystem 提供健康數據監控和管理功能，幫助您保持健康生活。"
-    />
-    <link rel="icon" href="/icons/LifeGuard.png" type="image/png" />
+    <title>HealthMonitoringSystem | 健康數據圖表</title>
+    <link rel="icon" href="icons/LifeGuard.png" type="image/png" />
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
@@ -26,7 +24,7 @@
       href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="scss/all.css" />
     <!-- Font Awesome -->
     <script
       src="https://kit.fontawesome.com/d6b833583a.js"
@@ -67,7 +65,6 @@
           </li>
         </ul>
       </nav>
-
       <!-- 登入彈跳視窗 -->
       <div
         class="modal fade"
@@ -89,14 +86,13 @@
             </div>
             <div class="modal-body">
               <!-- 登入表單 -->
-              <form method="post" action="/login">
+              <form>
                 <div class="mb-3">
                   <label for="username" class="form-label">使用者信箱</label>
                   <input
                     type="text"
                     class="form-control"
                     id="username"
-                    name="username"
                     placeholder="請輸入信箱"
                     required
                   />
@@ -107,7 +103,6 @@
                     id="inputPassword"
                     class="form-control"
                     type="password"
-                    name="password"
                     pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$"
                     placeholder="請輸入英數混合的六個字元"
                     required="required"
@@ -118,12 +113,14 @@
                 <div class="mb-3">
                   <label for="captchaInput" class="form-label">驗證碼</label>
                   <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="captchaInput"
-                      required
-                    />
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="captchaInput"
+                        required
+                      />
+                    </div>
                     <img
                       src="/api/captcha"
                       id="captchaImage"
@@ -142,7 +139,6 @@
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">登入</button>
-                <
                 <a
                   href="#"
                   class="btn btn-link position-absolute bottom-0 end-0 mb-3 me-3"
@@ -157,7 +153,6 @@
           </div>
         </div>
       </div>
-
       <!-- 註冊彈跳視窗 -->
       <div
         class="modal fade"
@@ -252,12 +247,11 @@
           </div>
         </div>
       </div>
-
       <!-- Sidebar -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="#" class="brand-link d-flex align-items-center">
           <img
-            src="/images/LifeGuard.svg"
+            src="images/LifeGuard.svg"
             alt="Logo"
             class="brand-image img-circle elevation-3 mt-1 mb-1"
           />
@@ -283,7 +277,7 @@
               role="menu"
             >
               <li class="nav-item">
-                <a href="index.jsp" class="nav-link active">
+                <a href="index.jsp" class="nav-link">
                   <i class="nav-icon fas fa-home"></i>
                   <p>首頁</p>
                 </a>
@@ -295,7 +289,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="dataAnalysis.jsp" class="nav-link">
+                <a href="dataAnalysis.jsp" class="nav-link active">
                   <i class="nav-icon fas fa-chart-line"></i>
                   <p>數據分析</p>
                 </a>
@@ -304,7 +298,6 @@
           </nav>
         </div>
       </aside>
-
       <!-- Content Wrapper -->
       <div class="content-wrapper">
         <!-- Content Header -->
@@ -312,7 +305,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>首頁</h1>
+                <h1>健康數據圖表</h1>
               </div>
             </div>
           </div>
@@ -320,80 +313,62 @@
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
-            <!-- Info boxes -->
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                  <span class="info-box-icon bg-info elevation-1"
-                    ><i class="fas fa-weight"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">體重</span>
-                    <span class="info-box-number">
-                      <c:out value="${latestData.weight}" default="N/A" /> kg
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-danger elevation-1"
-                    ><i class="fas fa-tint"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">血糖</span>
-                    <span class="info-box-number">
-                      <c:out value="${latestData.bloodSugar}" default="N/A" />
-                      mg/dL
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-success elevation-1"
-                    ><i class="fas fa-heartbeat"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">血壓</span>
-                    <span class="info-box-number">
-                      <c:out
-                        value="${latestData.bloodPressure}"
-                        default="N/A"
-                      />
-                      mmHg
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-warning elevation-1"
-                    ><i class="fas fa-heart"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">心率</span>
-                    <span class="info-box-number">
-                      <c:out value="${latestData.heartRate}" default="N/A" />
-                      bpm
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-            </div>
-            <!-- /.row -->
+            <canvas id="healthChart"></canvas>
           </div>
         </section>
-        <!-- /.content -->
       </div>
-      <!-- /.content-wrapper -->
+      <!-- Footer -->
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-inline">版本 1.0</div>
+        <strong>版權所有 &copy; 2024 Ting健康監控系統</strong> 保留所有權利.
+      </footer>
     </div>
-    <!-- ./wrapper -->
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById("healthChart").getContext("2d");
+        var chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [
+              <c:forEach var="data" items="${healthDataList}">
+                "${data.timestamp}",
+              </c:forEach>,
+            ],
+            datasets: [
+              {
+                label: "健康數據",
+                data: [
+                  <c:forEach var="data" items="${healthDataList}">
+                    ${data.value},
+                  </c:forEach>,
+                ],
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                type: "time",
+                time: {
+                  unit: "day",
+                },
+              },
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      });
+    </script>
     <!-- 日期選擇器 Air datepicker JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
     <!-- jQuery -->
@@ -402,8 +377,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/scripts.js"></script>
   </body>
 </html>

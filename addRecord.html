@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthMonitoringSystem | 健康監控系統</title>
-    <meta name="description" content="HealthMonitoringSystem 提供健康數據監控和管理功能，幫助您保持健康生活。" />
+    <title>HealthMonitoringSystem | 新增健康數據</title>
     <link rel="icon" href="icons/LifeGuard.png" type="image/png" />
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
-      crossorigin="anonymous" 
+      crossorigin="anonymous"
     />
     <!-- AdminLTE CSS -->
     <link
@@ -198,101 +197,95 @@
           </nav>
         </div>
       </aside>
-
-      <!-- Content Wrapper -->
-      <div class="content-wrapper">
-        <!-- Content Header -->
-        <section class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <h1>首頁</h1>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Main content -->
-        <section class="content">
-          <div class="container-fluid">
-            <!-- Info boxes -->
-            <div class="row">
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                  <span class="info-box-icon bg-info elevation-1"
-                    ><i class="fas fa-weight"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">體重</span>
-                    <span class="info-box-number">${latestWeight}</span>
-                  </div>
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Content Header -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>新增健康數據</h1>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-danger elevation-1"
-                    ><i class="fas fa-tint"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">血糖</span>
-                    <span class="info-box-number">${latestBloodSugar}</span>
-                  </div>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- 新增數據表單 -->
+                    <form method="post" action="/addHealthData">
+                        <div class="mb-3">
+                            <label for="dataType" class="form-label">數據類型</label>
+                            <select class="form-select" id="dataType" name="dataType" required>
+                                <option value="體重">體重</option>
+                                <option value="血糖">血糖</option>
+                                <option value="血壓">血壓</option>
+                                <option value="心率">心率</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="value" class="form-label">數值</label>
+                            <input type="text" class="form-control" id="value" name="value" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </form>
+                    <!-- 數據列表 -->
+                    <h2 class="mt-5">健康數據列表</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>數據類型</th>
+                                <th>數值</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="data" items="${healthDataList}">
+                                <tr>
+                                    <td>${data.timestamp}</td>
+                                    <td>${data.dataType}</td>
+                                    <td>${data.value}</td>
+                                    <td>
+                                        <form method="post" action="/deleteHealthData" style="display:inline;">
+                                            <input type="hidden" name="id" value="${data.id}">
+                                            <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                                        </form>
+                                        <form method="get" action="/editHealthData" style="display:inline;">
+                                            <input type="hidden" name="id" value="${data.id}">
+                                            <button type="submit" class="btn btn-warning btn-sm">修改</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-success elevation-1"
-                    ><i class="fas fa-heartbeat"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">血壓</span>
-                    <span class="info-box-number">${latestBloodPressure}</span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-              <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                  <span class="info-box-icon bg-warning elevation-1"
-                    ><i class="fas fa-heart"></i
-                  ></span>
-                  <div class="info-box-content">
-                    <span class="info-box-text">心率</span>
-                    <span class="info-box-number">${latestHeartRate}</span>
-                  </div>
-                </div>
-              </div>
-              <!-- ./col -->
-            </div>
-            <!-- /.row -->
-          </div>
-        </section>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
+            </section>
+        </div>
              <!-- Footer -->
-      <footer class="main-footer">
-        <div class="float-right d-none d-sm-inline">版本 1.0</div>
-        <strong>版權所有 &copy; 2024 Ting健康監控系統</strong> 保留所有權利.
-      </footer>
-    </div>
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- 日期選擇器 Air datepicker JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scripts/all.js"></script>
-  </body>
-</html>
+             <footer class="main-footer">
+                <div class="float-right d-none d-sm-inline">版本 1.0</div>
+                <strong>版權所有 &copy; 2024 Ting健康監控系統</strong> 保留所有權利.
+              </footer>
+            </div>
+            </div>
+            <!-- ./wrapper -->
+        
+            <!-- 日期選擇器 Air datepicker JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+            <!-- Bootstrap -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        
+            <!-- AdminLTE App -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+        
+            <!-- Chart.js -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="scripts/all.js"></script>
+          </body>
+        </html>
+        
