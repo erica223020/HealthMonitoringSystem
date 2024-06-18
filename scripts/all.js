@@ -20,6 +20,31 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function () {
   $('[data-widget="pushmenu"]').PushMenu();
 });
+document.addEventListener("DOMContentLoaded", function () {
+  // 獲取所有的通知項目
+  const notificationItems = document.querySelectorAll(".notification-item");
+
+  // 初始化時檢查本地存儲中的已讀狀態
+  notificationItems.forEach((item) => {
+    const notificationText = item.textContent.trim();
+    if (localStorage.getItem("read-" + notificationText)) {
+      item.classList.add("read");
+    }
+
+    // 為每個通知項目添加點擊事件
+    item.addEventListener("click", function () {
+      // 將該項目標記為已讀
+      this.classList.add("read");
+
+      // 保存到本地存儲
+      localStorage.setItem("read-" + notificationText, "true");
+
+      // 這裡可以添加代碼來通知伺服器該通知已讀
+      // markAsReadOnServer(this); // 假設有一個函數用來通知伺服器已讀狀態
+    });
+  });
+});
+
 // $(function () {
 //   var ctx = document.getElementById("exampleChart").getContext("2d");
 //   var chart = new Chart(ctx, {

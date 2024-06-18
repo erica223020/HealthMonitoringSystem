@@ -44,23 +44,6 @@ body {
     color: $btn-dark; // 深黑色
   }
 
-  .red-point {
-    position: relative;
-    padding-right: 10px; // 增加右側填充以容納紅點
-    cursor: pointer; // 可選，使鼠標指針在懸停時變為手指
-  }
-
-  .red-point::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 2px;
-    width: 7px;
-    height: 7px;
-    background-color: $btn-red;
-    border-radius: 50%;
-  }
-
   .sidebar-collapse .brand-link .brand-text {
     display: none;
   }
@@ -93,19 +76,68 @@ body {
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
+  /* 已讀通知樣式 */
+  .notification-item.read {
+    color: gray; /* 設置文字為灰色 */
+    background-color: #f0f0f0; /* 設置背景為淡灰色 */
+  }
+  /* 卡片通用樣式 */
+  .card {
+    border: none; /* 移除邊框 */
+    border-radius: 0.75rem; /* 設置所有四個角的圓角 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 輕微的陰影效果 */
+    overflow: hidden; /* 確保子元素的圓角效果不被裁剪 */
+  }
+
+  /* 卡片頭部樣式 */
+  .card-header {
+    padding: 0.75rem 1.25rem;
+    border-bottom: none; /* 移除底部邊框 */
+    border-top-left-radius: 0.75rem; /* 設置卡片頭部左側圓角 */
+    border-top-right-radius: 0.75rem; /* 設置卡片頭部右側圓角 */
+    background-color: inherit; /* 確保背景色不影響圓角的顯示 */
+  }
+
+  /* 列表項目樣式 */
+  .list-group-item {
+    border: none; /* 移除邊框 */
+    padding: 0.75rem 1.25rem; /* 調整間距 */
+    display: flex; /* 使用 Flexbox 來對齊圖標和文字 */
+    align-items: center; /* 垂直居中對齊 */
+    transition: background-color 0.3s ease; /* 平滑的背景色過渡 */
+  }
+
+  /* 在卡片內的列表項目第一和最後一個項目設置圓角 */
+  .list-group-item:first-child {
+    border-top-left-radius: 0.75rem; /* 第一項的左側圓角 */
+    border-top-right-radius: 0.75rem; /* 第一項的右側圓角 */
+  }
+
+  .list-group-item:last-child {
+    border-bottom-left-radius: 0.75rem; /* 最後一項的左側圓角 */
+    border-bottom-right-radius: 0.75rem; /* 最後一項的右側圓角 */
+  }
+
+  /* 列表項目懸停效果 */
+  .list-group-item:hover {
+    background-color: #f1f1f1; /* 淡灰色背景 */
+  }
+
+  /* 列表項目圖標樣式 */
+  .list-group-item i {
+    margin-right: 0.5rem; /* 調整圖標和文字之間的間距 */
+    color: #6c757d; /* 統一圖標顏色 */
+  }
+
+  .list-group-item:hover i {
+    color: #007bff; /* 懸停時改變圖標顏色 */
+  }
 }
 .modal.fade.show .modal-dialog {
   transform: translateY(0);
   opacity: 1;
 }
-@media (max-width: 768px) {
-  /* 確保側邊欄和內容區域不會導致滾動條出現 */
-  html,
-  body {
-    overflow: hidden; /* 隱藏整個頁面的滾動條 */
-  }
-}
 
-.a{
-  padding:10px;
+.a {
+  padding: 10px;
 }

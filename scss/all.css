@@ -2,10 +2,18 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
+
 body {
   background-color: #f2eeee;
+  /* 已讀通知樣式 */
+  /* 卡片通用樣式 */
+  /* 卡片頭部樣式 */
+  /* 列表項目樣式 */
+  /* 在卡片內的列表項目第一和最後一個項目設置圓角 */
+  /* 列表項目懸停效果 */
+  /* 列表項目圖標樣式 */
 }
 body #myDatepicker {
   width: 220px;
@@ -33,21 +41,6 @@ body .btn-link:hover .underline-from-left {
 body #refreshCaptcha:hover {
   color: #343a40;
 }
-body .red-point {
-  position: relative;
-  padding-right: 10px;
-  cursor: pointer;
-}
-body .red-point::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 2px;
-  width: 7px;
-  height: 7px;
-  background-color: #eb4e54;
-  border-radius: 50%;
-}
 body .sidebar-collapse .brand-link .brand-text {
   display: none;
 }
@@ -73,19 +66,58 @@ body .modal.fade .modal-dialog {
   opacity: 0;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+body .notification-item.read {
+  color: gray; /* 設置文字為灰色 */
+  background-color: #f0f0f0; /* 設置背景為淡灰色 */
+}
+body .card {
+  border: none; /* 移除邊框 */
+  border-radius: 0.75rem; /* 設置所有四個角的圓角 */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 輕微的陰影效果 */
+  overflow: hidden; /* 確保子元素的圓角效果不被裁剪 */
+}
+body .card-header {
+  padding: 0.75rem 1.25rem;
+  border-bottom: none; /* 移除底部邊框 */
+  border-top-left-radius: 0.75rem; /* 設置卡片頭部左側圓角 */
+  border-top-right-radius: 0.75rem; /* 設置卡片頭部右側圓角 */
+  background-color: inherit; /* 確保背景色不影響圓角的顯示 */
+}
+body .list-group-item {
+  border: none; /* 移除邊框 */
+  padding: 0.75rem 1.25rem; /* 調整間距 */
+  display: flex; /* 使用 Flexbox 來對齊圖標和文字 */
+  align-items: center; /* 垂直居中對齊 */
+  transition: background-color 0.3s ease; /* 平滑的背景色過渡 */
+}
+body .list-group-item:first-child {
+  border-top-left-radius: 0.75rem; /* 第一項的左側圓角 */
+  border-top-right-radius: 0.75rem; /* 第一項的右側圓角 */
+}
+body .list-group-item:last-child {
+  border-bottom-left-radius: 0.75rem; /* 最後一項的左側圓角 */
+  border-bottom-right-radius: 0.75rem; /* 最後一項的右側圓角 */
+}
+body .list-group-item:hover {
+  background-color: #f1f1f1; /* 淡灰色背景 */
+}
+body .list-group-item i {
+  margin-right: 0.5rem; /* 調整圖標和文字之間的間距 */
+  color: #6c757d; /* 統一圖標顏色 */
+}
+body .list-group-item:hover i {
+  color: #007bff; /* 懸停時改變圖標顏色 */
+}
 
 .modal.fade.show .modal-dialog {
   transform: translateY(0);
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  /* 確保側邊欄和內容區域不會導致滾動條出現 */
-  html,
-  body {
-    overflow: hidden; /* 隱藏整個頁面的滾動條 */
-  }
+.a {
+  padding: 10px;
 }
+
 .modal-content {
   background-color: #f0f0f0;
   border: 0px solid #ccc;
@@ -118,8 +150,7 @@ body .modal.fade .modal-dialog {
   border: #343a40;
 }
 
-.btn-primary.focus,
-.btn-primary:focus {
+.btn-primary.focus, .btn-primary:focus {
   color: #fff;
   background-color: #4d5358;
   border-color: #4d5358;
@@ -134,4 +165,96 @@ body .modal.fade .modal-dialog {
 
 .modal-dialog-custom {
   max-width: 180%; /* 你可以調整這個值來改變模態框的寬度 */
-} /*# sourceMappingURL=all.css.map */
+}
+
+body {
+  background: #1a1a1a;
+  color: white;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  height: 80vh;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2c2c2c;
+  padding: 20px;
+}
+
+.login-card .form-label {
+  color: #ccc;
+}
+
+.login-card .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.login-card .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.login-card a {
+  color: #007bff;
+}
+
+.login-card a:hover {
+  color: #0056b3;
+}
+
+.info-section {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("images/20231130122939339895227.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.info-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 調整透明度 */
+}
+
+.info-section .content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.info-section .content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.info-section .content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.info-section .content .btn {
+  margin: 10px;
+}/*# sourceMappingURL=all.css.map */
