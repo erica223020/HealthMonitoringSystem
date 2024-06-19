@@ -7,13 +7,6 @@
 
 body {
   background-color: #f2eeee;
-  /* 已讀通知樣式 */
-  /* 卡片通用樣式 */
-  /* 卡片頭部樣式 */
-  /* 列表項目樣式 */
-  /* 在卡片內的列表項目第一和最後一個項目設置圓角 */
-  /* 列表項目懸停效果 */
-  /* 列表項目圖標樣式 */
 }
 body #myDatepicker {
   width: 220px;
@@ -166,3 +159,59 @@ body .list-group-item:hover i {
 .modal-dialog-custom {
   max-width: 180%; /* 你可以調整這個值來改變模態框的寬度 */
 }/*# sourceMappingURL=all.css.map */
+
+.card-title {
+  font-weight: bold;
+}
+.info-box-content {
+  line-height: 1.5;
+}
+.progress {
+  height: 20px;
+}
+.card-header {
+  background-color: #f4f6f9;
+  border-bottom: 1px solid #dcdcdc;
+}
+.list-group-item {
+  border: none;
+  padding-left: 0;
+}
+.info-box-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.info-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.info-box {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+}
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateY(-10px);
+  opacity: 0;
+  display: none;
+}
+.dropdown-menu.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+.red-point {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+}
+.dropdown-item {
+  white-space: normal;
+  }
