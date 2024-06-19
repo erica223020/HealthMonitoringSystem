@@ -7,6 +7,13 @@
 
 body {
   background-color: #f2eeee;
+  /* 已讀通知樣式 */
+  /* 卡片通用樣式 */
+  /* 卡片頭部樣式 */
+  /* 列表項目樣式 */
+  /* 在卡片內的列表項目第一和最後一個項目設置圓角 */
+  /* 列表項目懸停效果 */
+  /* 列表項目圖標樣式 */
 }
 body #myDatepicker {
   width: 220px;
@@ -111,3 +118,51 @@ body .list-group-item:hover i {
   padding: 10px;
 }
 
+.modal-content {
+  background-color: #f0f0f0;
+  border: 0px solid #ccc;
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #343a40;
+  color: #fff;
+  border-bottom: none;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  background-color: #f0f0f0;
+  border-top: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.btn-primary {
+  background-color: #4d5358;
+  border: #4d5358;
+}
+
+.btn-primary:hover {
+  background-color: #343a40;
+  border: #343a40;
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #4d5358;
+  border-color: #4d5358;
+  box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: #4d5358;
+  border-color: #4d5358;
+}
+
+.modal-dialog-custom {
+  max-width: 180%; /* 你可以調整這個值來改變模態框的寬度 */
+}/*# sourceMappingURL=all.css.map */
