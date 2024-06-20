@@ -45,94 +45,44 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// $(function () {
-//   var ctx = document.getElementById("exampleChart").getContext("2d");
-//   var chart = new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
-//       datasets: [
-//         {
-//           label: "步數",
-//           backgroundColor: "rgba(60,141,188,0.9)",
-//           borderColor: "rgba(60,141,188,0.8)",
-//           data: [5000, 6000, 5500, 7000, 6500, 7200, 6800],
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       datasetFill: false,
-//     },
-//   });
+document.addEventListener("DOMContentLoaded", function () {
+  const notificationDropdown = document.getElementById("notificationDropdown");
+  const dropdownMenu = document.querySelector(".dropdown-menu");
+  const notificationBadge = document.getElementById("notificationBadge");
 
-//   const zh = {
-//     days: [
-//       "星期日",
-//       "星期一",
-//       "星期二",
-//       "星期三",
-//       "星期四",
-//       "星期五",
-//       "星期六",
-//     ],
-//     daysShort: ["日", "一", "二", "三", "四", "五", "六"],
-//     daysMin: ["日", "一", "二", "三", "四", "五", "六"],
-//     months: [
-//       "一月",
-//       "二月",
-//       "三月",
-//       "四月",
-//       "五月",
-//       "六月",
-//       "七月",
-//       "八月",
-//       "九月",
-//       "十月",
-//       "十一月",
-//       "十二月",
-//     ],
-//     monthsShort: [
-//       "一月",
-//       "二月",
-//       "三月",
-//       "四月",
-//       "五月",
-//       "六月",
-//       "七月",
-//       "八月",
-//       "九月",
-//       "十月",
-//       "十一月",
-//       "十二月",
-//     ],
-//     today: "今天",
-//     clear: "清除",
-//     dateFormat: "yyyy/MM/dd",
-//     firstday: 0,
-//   };
+  // 有新通知時顯示紅點
+  function checkNewNotifications() {
+    const hasNewNotifications = true; // 模擬有新消息，實際應根據後端狀態來設置
+    if (hasNewNotifications) {
+      notificationBadge.style.display = "block";
+    } else {
+      notificationBadge.style.display = "none";
+    }
+  }
 
-//   const datepicker = new AirDatepicker("#myDatepicker", {
-//     locale: zh,
-//     range: true,
-//     buttons: ["today", "clear"],
-//     multipleDatesSeparator: " - ",
-//   });
-//   // 函數：點擊日期選擇器 ICON 顯示日期選擇器
-//   window.showDatepicker = () => {
-//     datepicker.show();
-//   };
-//   //如果不是點擊日期選擇器或ICON則隱藏日期選擇器
-//   $(document).on("mousedown", function (e) {
-//     //當用戶點擊頁面上的任意地方時，檢查點擊位置是否在日期選擇器或日期選擇器圖標內，是就不執行任何操作
-//     if (
-//       $(e.target).closest(".air-datepicker").length ||
-//       $(e.target).closest(".datepicker-icon").length
-//     ) {
-//       return;
-//     }
-//     // 否則隱藏
-//     datepicker.hide();
-//   });
-// });
+  // 當點擊鈴鐺時，顯示或隱藏通知
+  notificationDropdown.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (dropdownMenu.classList.contains("show")) {
+      dropdownMenu.classList.remove("show");
+      setTimeout(() => (dropdownMenu.style.display = "none"), 300); // 讓transition生效
+    } else {
+      dropdownMenu.style.display = "block";
+      setTimeout(() => dropdownMenu.classList.add("show"), 10); // 延遲以觸發CSS過渡
+      notificationBadge.style.display = "none"; // 點擊後隱藏紅點
+    }
+  });
+
+  // 當點擊頁面其他部分時，隱藏通知
+  document.addEventListener("click", function (event) {
+    if (
+      !notificationDropdown.contains(event.target) &&
+      !dropdownMenu.contains(event.target)
+    ) {
+      dropdownMenu.classList.remove("show");
+      setTimeout(() => (dropdownMenu.style.display = "none"), 300);
+    }
+  });
+
+  checkNewNotifications(); // 初始化檢查通知
+});
