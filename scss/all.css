@@ -8,17 +8,20 @@
 body {
   background-color: #f2eeee;
 }
+
 body #myDatepicker {
   width: 220px;
   height: 30px;
   text-align: center;
 }
+
 body .btn-link {
   position: relative;
   overflow: hidden;
   text-decoration: none;
   color: #3c8be0;
 }
+
 body .underline-from-left {
   position: absolute;
   bottom: 5px;
@@ -28,47 +31,59 @@ body .underline-from-left {
   background-color: #256ebd;
   transition: width 0.3s ease;
 }
+
 body .btn-link:hover .underline-from-left {
   width: 90%;
 }
+
 body #refreshCaptcha:hover {
   color: #343a40;
 }
+
 body .sidebar-collapse .brand-link .brand-text {
   display: none;
 }
+
 body .sidebar-collapse .nav-item p {
   display: none;
 }
+
 body .sidebar-collapse .nav-item i {
   margin-right: 0;
   font-size: 1.5em;
 }
+
 body .sidebar-mini .wrapper {
   transition: margin-left 0.3s ease !important;
 }
+
 body .sidebar-collapse .main-sidebar {
   width: 80px !important;
 }
+
 body .sidebar-collapse .content-wrapper {
   margin-left: 80px !important;
   transition: margin-left 0.3s ease !important;
 }
+
 body .modal.fade .modal-dialog {
   transform: translateY(-100%);
   opacity: 0;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+
 body .notification-item.read {
   color: gray; /* 設置文字為灰色 */
   background-color: #f0f0f0; /* 設置背景為淡灰色 */
 }
+
 body .card {
   border: none; /* 移除邊框 */
   border-radius: 0.75rem; /* 設置所有四個角的圓角 */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 輕微的陰影效果 */
   overflow: hidden; /* 確保子元素的圓角效果不被裁剪 */
 }
+
 body .card-header {
   padding: 0.75rem 1.25rem;
   border-bottom: none; /* 移除底部邊框 */
@@ -76,6 +91,7 @@ body .card-header {
   border-top-right-radius: 0.75rem; /* 設置卡片頭部右側圓角 */
   background-color: inherit; /* 確保背景色不影響圓角的顯示 */
 }
+
 body .list-group-item {
   border: none; /* 移除邊框 */
   padding: 0.75rem 1.25rem; /* 調整間距 */
@@ -83,93 +99,128 @@ body .list-group-item {
   align-items: center; /* 垂直居中對齊 */
   transition: background-color 0.3s ease; /* 平滑的背景色過渡 */
 }
+
 body .list-group-item:first-child {
   border-top-left-radius: 0.75rem; /* 第一項的左側圓角 */
   border-top-right-radius: 0.75rem; /* 第一項的右側圓角 */
 }
+
 body .list-group-item:last-child {
   border-bottom-left-radius: 0.75rem; /* 最後一項的左側圓角 */
   border-bottom-right-radius: 0.75rem; /* 最後一項的右側圓角 */
 }
+
 body .list-group-item:hover {
   background-color: #f1f1f1; /* 淡灰色背景 */
 }
+
 body .list-group-item i {
   margin-right: 0.5rem; /* 調整圖標和文字之間的間距 */
   color: #6c757d; /* 統一圖標顏色 */
 }
+
 body .list-group-item:hover i {
   color: #007bff; /* 懸停時改變圖標顏色 */
 }
-body .modal.fade.show .modal-dialog {
+
+.modal.fade.show .modal-dialog {
   transform: translateY(0);
   opacity: 1;
 }
-body .modal-content {
+
+.a {
+  padding: 10px;
+}
+
+.modal-content {
   background-color: #f0f0f0;
   border: 0px solid #ccc;
   border-radius: 10px;
 }
-body .modal-header {
+
+.modal-header {
   background-color: #343a40;
   color: #fff;
   border-bottom: none;
 }
-body .modal-body {
+
+.modal-body {
   padding: 20px;
 }
-body .modal-footer {
+
+.modal-footer {
   background-color: #f0f0f0;
   border-top: 1px solid #ccc;
   padding: 10px 20px;
 }
-body .btn-primary {
+
+.btn-primary {
   background-color: #4d5358;
   border: #4d5358;
 }
-body .btn-primary:hover {
+
+.btn-primary:hover {
   background-color: #343a40;
   border: #343a40;
 }
-body .btn-primary.focus, body .btn-primary:focus {
+
+.btn-primary.focus,
+.btn-primary:focus {
   color: #fff;
   background-color: #4d5358;
   border-color: #4d5358;
   box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
 }
-body .btn-primary:not(:disabled):not(.disabled):active {
+
+.btn-primary:not(:disabled):not(.disabled):active {
   color: #fff;
   background-color: #4d5358;
   border-color: #4d5358;
 }
-body .modal-dialog-custom {
+
+.modal-dialog-custom {
   max-width: 180%; /* 你可以調整這個值來改變模態框的寬度 */
 }
-body .card-title {
+
+.card-title {
   font-weight: bold;
 }
-body .info-box-content {
+
+.info-box-content {
   line-height: 1.5;
+}
+
+.progress {
+  height: 20px;
+}
+
+.card-header {
+  background-color: #f4f6f9;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.list-group-item {
+  border: none;
+  padding-left: 0;
+}
+
+.info-box-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.info-box-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-body .progress {
-  height: 20px;
-}
-body .card-header {
-  background-color: #f4f6f9;
-  border-bottom: 1px solid #dcdcdc;
-}
-body .info-box-number {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-body .info-box {
+
+.info-box {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
 }
-body .dropdown-menu {
+
+.dropdown-menu {
   max-height: 300px;
   overflow-y: auto;
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -177,12 +228,14 @@ body .dropdown-menu {
   opacity: 0;
   display: none;
 }
-body .dropdown-menu.show {
+
+.dropdown-menu.show {
   display: block;
   transform: translateY(0);
   opacity: 1;
 }
-body .red-point {
+
+.red-point {
   position: absolute;
   top: 8px;
   right: 12px;
@@ -191,6 +244,7 @@ body .red-point {
   background-color: red;
   border-radius: 50%;
 }
-body .dropdown-item {
+
+.dropdown-item {
   white-space: normal;
 }
