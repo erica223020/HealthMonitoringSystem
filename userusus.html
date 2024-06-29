@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css"
+    />
+    <style>
+      body {
+        background-color: #f5f5f5;
+      }
+      .profile-card {
+        margin: 20px auto;
+        width: 50%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .profile-header {
+        text-align: center;
+        position: relative;
+      }
+      .profile-header img {
+        border-radius: 50%;
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+      .profile-header input[type="file"] {
+        display: none;
+      }
+      .profile-header .user-id {
+        margin-top: 10px;
+        font-size: 1.2em;
+        color: #333;
+      }
+      .profile-form {
+        margin-top: 20px;
+      }
+      .datepicker-container {
+        position: relative;
+      }
+      .datepicker-container input {
+        padding-right: 30px;
+      }
+      .datepicker-container .datepicker-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.2em;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-card">
+        <div class="profile-header">
+          <img id="profile-pic" src="profile-pic.jpg" alt="User Picture" />
+          <input type="file" id="profile-pic-input" accept="image/*" />
+          <div class="user-id">User ID: 12345</div>
+          <!-- 顯示用戶ID -->
+        </div>
+        <div class="profile-form">
+          <form>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                value="Chet Faker"
+              />
+              <!-- 預設用戶名 -->
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                value="user@example.com"
+                readonly
+              />
+              <!-- 不可修改的信箱 -->
+            </div>
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select class="form-control" id="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group datepicker-container">
+              <label for="birthday">Birthday</label>
+              <input
+                type="text"
+                class="form-control"
+                id="birthday"
+                placeholder="Select your birthday"
+              />
+              <span class="datepicker-icon">&#128197;</span>
+              <!-- 日曆圖標 -->
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Update Profile
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+    <script>
+      document
+        .getElementById("profile-pic")
+        .addEventListener("click", function () {
+          document.getElementById("profile-pic-input").click();
+        });
+
+      document
+        .getElementById("profile-pic-input")
+        .addEventListener("change", function (event) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            var output = document.getElementById("profile-pic");
+            output.src = reader.result;
+
+            // 此處添加上傳圖片到伺服器的代碼
+            var formData = new FormData();
+            formData.append("file", event.target.files[0]);
+
+            // 將圖片上傳到伺服器
+            fetch("/upload-profile-pic", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                // 獲取圖片的URL並保存到資料庫中
+                console.log(data.filePath);
+                // 這裡您可以將 filePath 保存到用戶的資料庫記錄中
+              })
+              .catch((error) => {
+                console.error("Error uploading image:", error);
+              });
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        });
+
+      const birthdayInput = document.getElementById("birthday");
+      const datepickerIcon = document.querySelector(".datepicker-icon");
+
+      datepickerIcon.addEventListener("click", () => {
+        birthdayInput.focus();
+      });
+
+      new AirDatepicker("#birthday", {
+        locale: {
+          days: [
+            "星期日",
+            "星期一",
+            "星期二",
+            "星期三",
+            "星期四",
+            "星期五",
+            "星期六",
+          ],
+          daysShort: ["日", "一", "二", "三", "四", "五", "六"],
+          daysMin: ["日", "一", "二", "三", "四", "五", "六"],
+          months: [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月",
+            "九月",
+            "十月",
+            "十一月",
+            "十二月",
+          ],
+          monthsShort: [
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月",
+          ],
+          today: "今天",
+          clear: "清除",
+          dateFormat: "yyyy-MM-dd",
+          timeFormat: "HH:mm",
+          firstDay: 1,
+        },
+      });
+    </script>
+  </body>
+</html>

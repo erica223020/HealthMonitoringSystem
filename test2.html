@@ -3,105 +3,762 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>註冊 | HealthMonitoringSystem</title>
+    <title>健康數據分析 | HealthMonitoringSystem</title>
+    <link
+      rel="icon"
+      href="${pageContext.request.contextPath}/static/icons/LifeGuard.png"
+      type="image/png"
+    />
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
     />
     <!-- AdminLTE CSS -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
     />
-    <link rel="stylesheet" href="scss/register.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css"
+    />
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/d6b833583a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 引入Date Adapter for Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
+    <link
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/static/css/addRecord.css"
+    />
   </head>
-  <body>
-    <div class="container">
-      <div class="form-wrapper">
-        <div class="register-section">
-          <div class="register-card">
-            <div class="text-center mb-4">
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" role="button"
+              ><i class="fas fa-search"></i
+            ></a>
+          </li>
+          <li class="nav-item dropdown position-relative">
+            <a class="nav-link" id="notificationDropdown" href="#">
+              <i class="fas fa-bell position-relative">
+                <span
+                  class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+                  style="width: 10px; height: 10px"
+                  id="notificationBadge"
+                ></span>
+              </i>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+              aria-labelledby="notificationDropdown"
+            >
+              <span class="dropdown-item dropdown-header">系統通知</span>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item notification-item"
+                >您有新的健康數據待查看。</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item notification-item"
+                >系統更新：新增了健康指標分析功能。</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item notification-item"
+                >您的資料已成功備份。</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item notification-item"
+                >即將進行系統維護，請注意使用時間。</a
+              >
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item notification-item"
+                >提醒：更新您的健康目標。</a
+              >
+            </div>
+          </li>
+          <li class="nav-item d-sm-inline-block">
+            <form
+              id="logoutForm"
+              method="post"
+              action="<c:url value='/user/logout' />"
+              aria-label="登出"
+            >
+              <button
+                type="button"
+                class="btn btn-danger"
+                style="font-weight: bold"
+                onclick="handleLogout()"
+              >
+                <i class="fas fa-sign-out-alt"></i> 登出
+              </button>
+            </form>
+          </li>
+        </ul>
+      </nav>
+      <!-- Sidebar -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="index" class="brand-link d-flex align-items-center">
+          <div class="logo-wrapper">
+            <img
+              src="${pageContext.request.contextPath}/static/icons/LifeGuardLogo.png"
+              alt="Logo"
+              class="brand-image img-circle elevation-3 mt-1 mb-1"
+            />
+          </div>
+          <span class="brand-text font-weight-light ms-2">Life Guard</span>
+        </a>
+        <div class="sidebar">
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
               <img
-                src="icons/LifeGuard white.png"
-                alt="Logo"
-                class="img-fluid"
+                src="${pageContext.request.contextPath}/static/images/sticker.jpg"
+                class="img-circle elevation-2"
+                alt="User Image"
               />
             </div>
-            <c:if test="${not empty registerError}">
-              <div class="alert alert-danger">${registerError}</div>
-            </c:if>
-            <form method="post" action="/user/register">
-              <div class="mb-3">
-                <label for="registerUsername" class="form-label"
-                  >使用者名稱</label
-                >
+            <div class="info">
+              <a href="#" class="d-block">Rich Ting</a>
+            </div>
+          </div>
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+            >
+              <li class="nav-item">
+                <a href="/addRecord" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>新增紀錄</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dataAnalysis" class="nav-link">
+                  <i class="nav-icon fas fa-chart-line"></i>
+                  <p>數據分析</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/goals" class="nav-link">
+                  <i class="nav-icon fas fa-bullseye"></i>
+                  <p>健康目標</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/faq" class="nav-link">
+                  <i class="nav-icon fas fa-question-circle"></i>
+                  <p>常見問題</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <!-- Content Wrapper -->
+      <div class="content-wrapper">
+        <!-- Content Header -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>健康數據分析</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="startDate" class="form-label">開始日期</label>
                 <input
                   type="text"
                   class="form-control"
-                  name="username"
-                  placeholder="請輸入使用者名稱"
-                  required="required"
+                  id="startDate"
+                  name="startDate"
+                  required
                 />
               </div>
-              <div class="mb-3">
-                <label for="registerEmail" class="form-label">使用者信箱</label>
+              <div class="col-md-6">
+                <label for="endDate" class="form-label">結束日期</label>
                 <input
-                  type="email"
+                  type="text"
                   class="form-control"
-                  name="email"
-                  placeholder="請輸入要註冊的信箱"
-                  required="required"
-                  pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                  id="endDate"
+                  name="endDate"
+                  required
                 />
               </div>
-              <div class="mb-3">
-                <label for="registerPassword" class="form-label">密碼</label>
-                <input
-                  id="registerPassword"
-                  class="form-control"
-                  type="password"
-                  name="password"
-                  pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$"
-                  placeholder="請輸入英數混合的六個字元"
-                  required="required"
-                  oninput="setCustomValidity('');"
-                  oninvalid="setCustomValidity('密碼格式含英數需至少六個字元');"
-                />
+            </div>
+            <div class="text-end mb-3">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="loadCharts()"
+              >
+                顯示圖表
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <canvas id="combinedChart" width="800" height="400"></canvas>
               </div>
-              <div class="mb-3">
-                <label for="confirmPassword" class="form-label"
-                  >再次確認密碼</label
-                >
-                <input
-                  id="ConfirmPassword"
-                  class="form-control"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="請再次輸入密碼"
-                  required="required"
-                  oninput="setCustomValidity('');"
-                  onchange="if(document.getElementById('registerPassword').value != document.getElementById('ConfirmPassword').value){setCustomValidity('密碼與確認密碼不相同');}"
-                />
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <canvas
+                  id="genderAgeHealthChart"
+                  width="800"
+                  height="400"
+                ></canvas>
               </div>
-              <div class="mb-3">
-                <label for="registerGender" class="form-label">性別</label>
-                <select class="form-control" name="gender" required="required">
-                  <option value="male">男</option>
-                  <option value="female">女</option>
-                  <option value="other">其他</option>
-                </select>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <canvas
+                  id="genderAgeDistributionChart"
+                  width="800"
+                  height="400"
+                ></canvas>
               </div>
-              <button type="submit" class="btn btn-primary w-100">註冊</button>
-            </form>
-            <div class="mt-3 text-center">
-              <a href="login.jsp">已經有帳號了？立即登入</a>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <canvas
+                  id="genderDistributionChart"
+                  width="800"
+                  height="400"
+                ></canvas>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12 d-flex justify-content-around">
+                <div>
+                  <img
+                    src="user1.jpg"
+                    alt="User 1"
+                    class="img-thumbnail"
+                    style="width: 100px"
+                  />
+                  <p>User 1</p>
+                  <p>Contributions: 100</p>
+                </div>
+                <div>
+                  <img
+                    src="user2.jpg"
+                    alt="User 2"
+                    class="img-thumbnail"
+                    style="width: 100px"
+                  />
+                  <p>User 2</p>
+                  <p>Contributions: 90</p>
+                </div>
+                <div>
+                  <img
+                    src="user3.jpg"
+                    alt="User 3"
+                    class="img-thumbnail"
+                    style="width: 100px"
+                  />
+                  <p>User 3</p>
+                  <p>Contributions: 80</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="info-section"></div>
+        </section>
       </div>
+      <!-- Footer -->
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-inline">版本 1.0</div>
+        <strong>版權所有 &copy; 2024 Ting健康監控系統</strong> 保留所有權利.
+      </footer>
     </div>
+
+    <!-- 日期選擇器 Air datepicker JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.js"></script>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 初始化 AdminLTE 的 PushMenu 功能
+        if (typeof $ !== "undefined" && $.fn.PushMenu) {
+          $('[data-widget="pushmenu"]').PushMenu();
+        }
+
+        // 初始化日期選擇器
+        const startDatePicker = new AirDatepicker("#startDate", {
+          locale: {
+            days: [
+              "星期日",
+              "星期一",
+              "星期二",
+              "星期三",
+              "星期四",
+              "星期五",
+              "星期六",
+            ],
+            daysShort: ["日", "一", "二", "三", "四", "五", "六"],
+            daysMin: ["日", "一", "二", "三", "四", "五", "六"],
+            months: [
+              "一月",
+              "二月",
+              "三月",
+              "四月",
+              "五月",
+              "六月",
+              "七月",
+              "八月",
+              "九月",
+              "十月",
+              "十一月",
+              "十二月",
+            ],
+            monthsShort: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月",
+            ],
+            today: "今天",
+            clear: "清除",
+            dateFormat: "yyyy-MM-dd",
+            timeFormat: "HH:mm",
+            firstDay: 1,
+          },
+        });
+
+        const endDatePicker = new AirDatepicker("#endDate", {
+          locale: {
+            days: [
+              "星期日",
+              "星期一",
+              "星期二",
+              "星期三",
+              "星期四",
+              "星期五",
+              "星期六",
+            ],
+            daysShort: ["日", "一", "二", "三", "四", "五", "六"],
+            daysMin: ["日", "一", "二", "三", "四", "五", "六"],
+            months: [
+              "一月",
+              "二月",
+              "三月",
+              "四月",
+              "五月",
+              "六月",
+              "七月",
+              "八月",
+              "九月",
+              "十月",
+              "十一月",
+              "十二月",
+            ],
+            monthsShort: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+              "10月",
+              "11月",
+              "12月",
+            ],
+            today: "今天",
+            clear: "清除",
+            dateFormat: "yyyy-MM-dd",
+            timeFormat: "HH:mm",
+            firstDay: 1,
+          },
+        });
+      });
+
+      function loadCharts() {
+        const data = [
+          {
+            timestamp: "2024-06-01",
+            heartRate: 75,
+            weight: 70,
+            bloodSugar: 90,
+            bloodPressure: 120,
+          },
+          {
+            timestamp: "2024-06-02",
+            heartRate: 78,
+            weight: 71,
+            bloodSugar: 92,
+            bloodPressure: 122,
+          },
+          {
+            timestamp: "2024-06-03",
+            heartRate: 76,
+            weight: 69,
+            bloodSugar: 89,
+            bloodPressure: 118,
+          },
+          {
+            timestamp: "2024-06-04",
+            heartRate: 77,
+            weight: 70,
+            bloodSugar: 91,
+            bloodPressure: 119,
+          },
+          {
+            timestamp: "2024-06-05",
+            heartRate: 80,
+            weight: 72,
+            bloodSugar: 93,
+            bloodPressure: 124,
+          },
+          {
+            timestamp: "2024-06-06",
+            heartRate: 79,
+            weight: 71,
+            bloodSugar: 90,
+            bloodPressure: 121,
+          },
+        ];
+
+        const labels = data.map((item) => new Date(item.timestamp));
+        const heartRateValues = data.map((item) => item.heartRate);
+        const weightValues = data.map((item) => item.weight);
+        const bloodSugarValues = data.map((item) => item.bloodSugar);
+        const bloodPressureValues = data.map((item) => item.bloodPressure);
+
+        // 合併圖表
+        const ctxCombined = document
+          .getElementById("combinedChart")
+          .getContext("2d");
+        new Chart(ctxCombined, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Heart Rate",
+                data: heartRateValues,
+                borderColor: "#ff6384",
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: "#ff6384",
+                pointBorderColor: "#fff",
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "#ff6384",
+                pointHoverBorderColor: "#fff",
+              },
+              {
+                label: "Weight",
+                data: weightValues,
+                borderColor: "#36a2eb",
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: "#36a2eb",
+                pointBorderColor: "#fff",
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "#36a2eb",
+                pointHoverBorderColor: "#fff",
+              },
+              {
+                label: "Blood Sugar",
+                data: bloodSugarValues,
+                borderColor: "#ffcd56",
+                backgroundColor: "rgba(255, 206, 86, 0.2)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: "#ffcd56",
+                pointBorderColor: "#fff",
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "#ffcd56",
+                pointHoverBorderColor: "#fff",
+              },
+              {
+                label: "Blood Pressure",
+                data: bloodPressureValues,
+                borderColor: "#4bc0c0",
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: "#4bc0c0",
+                pointBorderColor: "#fff",
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "#4bc0c0",
+                pointHoverBorderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+              },
+            },
+            scales: {
+              x: {
+                type: "time",
+                time: {
+                  unit: "day",
+                  tooltipFormat: "yyyy-MM-dd",
+                },
+                title: {
+                  display: true,
+                  text: "日期",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "值",
+                },
+              },
+            },
+          },
+        });
+
+        // 性別與年齡組的健康指標比較圖
+        const ctxGenderAgeHealth = document
+          .getElementById("genderAgeHealthChart")
+          .getContext("2d");
+        new Chart(ctxGenderAgeHealth, {
+          type: "bar",
+          data: {
+            labels: [
+              "Male 20-30",
+              "Male 31-40",
+              "Female 20-30",
+              "Female 31-40",
+            ],
+            datasets: [
+              {
+                label: "Average Heart Rate",
+                data: [75, 78, 70, 72], // 替換為實際數據
+                backgroundColor: "#ff6384", // 調整顏色
+                borderColor: "#ff6384",
+                borderWidth: 2,
+                hoverBackgroundColor: "#ff6384",
+                hoverBorderColor: "#fff",
+              },
+              {
+                label: "Average Weight",
+                data: [70, 80, 60, 65], // 替換為實際數據
+                backgroundColor: "#36a2eb", // 調整顏色
+                borderColor: "#36a2eb",
+                borderWidth: 2,
+                hoverBackgroundColor: "#36a2eb",
+                hoverBorderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+              },
+            },
+            scales: {
+              x: {
+                stacked: true,
+                title: {
+                  display: true,
+                  text: "年齡組和性別",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                stacked: true,
+                title: {
+                  display: true,
+                  text: "平均值",
+                },
+              },
+            },
+          },
+        });
+
+        // 性別與年齡組的健康指標分佈圖
+        const ctxGenderAgeDistribution = document
+          .getElementById("genderAgeDistributionChart")
+          .getContext("2d");
+        new Chart(ctxGenderAgeDistribution, {
+          type: "bar",
+          data: {
+            labels: ["20-30", "31-40", "41-50", "51-60"],
+            datasets: [
+              {
+                label: "Male Heart Rate",
+                data: [75, 78, 76, 74], // 替換為實際數據
+                backgroundColor: "#36a2eb", // 調整顏色
+                borderColor: "#36a2eb",
+                borderWidth: 2,
+                hoverBackgroundColor: "#36a2eb",
+                hoverBorderColor: "#fff",
+              },
+              {
+                label: "Female Heart Rate",
+                data: [70, 72, 71, 69], // 替換為實際數據
+                backgroundColor: "#ff6384", // 調整顏色
+                borderColor: "#ff6384",
+                borderWidth: 2,
+                hoverBackgroundColor: "#ff6384",
+                hoverBorderColor: "#fff",
+              },
+              {
+                label: "Male Weight",
+                data: [70, 75, 80, 85], // 替換為實際數據
+                backgroundColor: "#ffcd56", // 調整顏色
+                borderColor: "#ffcd56",
+                borderWidth: 2,
+                hoverBackgroundColor: "#ffcd56",
+                hoverBorderColor: "#fff",
+              },
+              {
+                label: "Female Weight",
+                data: [60, 65, 70, 75], // 替換為實際數據
+                backgroundColor: "#4bc0c0", // 調整顏色
+                borderColor: "#4bc0c0",
+                borderWidth: 2,
+                hoverBackgroundColor: "#4bc0c0",
+                hoverBorderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+              },
+            },
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: "年齡組",
+                },
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: "值",
+                },
+              },
+            },
+          },
+        });
+
+        // 用戶數量按性別分佈圖
+        const ctxGenderDistribution = document
+          .getElementById("genderDistributionChart")
+          .getContext("2d");
+        new Chart(ctxGenderDistribution, {
+          type: "pie",
+          data: {
+            labels: ["Male", "Female"],
+            datasets: [
+              {
+                label: "Gender Distribution",
+                data: [60, 40], // 替換為實際數據
+                backgroundColor: ["#36a2eb", "#ff6384"], // 調整顏色
+                borderColor: ["#36a2eb", "#ff6384"],
+                borderWidth: 2,
+                hoverBackgroundColor: ["#36a2eb", "#ff6384"],
+                hoverBorderColor: "#fff",
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: true,
+                position: "bottom",
+              },
+            },
+          },
+        });
+      }
+
+      function handleLogout() {
+        Swal.fire({
+          title: "確認登出?",
+          text: "您確定要登出嗎?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d21f3c", // 紅色確認按鈕
+          cancelButtonColor: "#6c757d", // 灰色取消按鈕
+          background: "#343a40", // 背景顏色設置為深色
+          color: "#ffffff", // 文字顏色設置為白色
+          confirmButtonText: "是的, 我要登出!",
+          cancelButtonText: "取消",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // 顯示成功消息並等待轉跳
+            Swal.fire({
+              icon: "success",
+              title: "登出成功",
+              text: "轉跳中...",
+              background: "#403734", // 背景顏色設置為深色
+              color: "#ffffff", // 文字顏色設置為白色
+              showConfirmButton: false,
+              timer: 1500,
+              timerProgressBar: true,
+              willClose: () => {
+                // 當計時器完成時立即轉跳
+                window.location.href =
+                  "${pageContext.request.contextPath}/login";
+              },
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
